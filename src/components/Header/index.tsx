@@ -3,6 +3,8 @@ import Logo from '../Logo/index';
 import { StyledHeader, StyledNavItem } from './styles';
 import { Link } from 'react-router-dom';
 import { Container } from '../Container/index';
+import Codepen from '../../assets/codepen.svg'
+import Instagram from '../../assets/instagram.svg'
 
 interface HeaderProps {};
 
@@ -11,7 +13,7 @@ function Header({}: React.Props<HeaderProps>) {
     <StyledHeader>
       <Container>
         <Logo />
-        <StyledNavItem>
+        {/* <StyledNavItem>
           <Link to="/about">About</Link>
         </StyledNavItem>
         <StyledNavItem>
@@ -19,7 +21,13 @@ function Header({}: React.Props<HeaderProps>) {
         </StyledNavItem>
         <StyledNavItem>
           <Link to="/styleguide">Styleguide</Link>
-        </StyledNavItem>
+        </StyledNavItem> */}
+        <a href="https://codepen.io/CAWeissen" target="_blank" rel="noopener noreferrer">
+          <Codepen/>
+        </a>
+        <a href="https://www.instagram.com/caweissen/" target="_blank" rel="noopener noreferrer">
+          <Instagram/>
+        </a>
       </Container>
     </StyledHeader>
   );

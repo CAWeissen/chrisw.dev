@@ -13,18 +13,22 @@ export default class Color extends ColorLib {
   }
 }
 
-export const red = new Color('#EB4037');
-export const darkRed = red.desaturate(30).darken(30);
+export const red = new Color('#ec635c');
+export const darkRed = red.desaturate(20).darken(35);
 
 export const blue = new Color('#74798D');
 export const darkBlue = blue.saturate(10).darken(30);
+
+export const aqua = new Color('#65b9c1');
+export const darkaqua = blue.saturate(10).darken(30);
 // 323a3e
+// 65b9c1
 
 export const green = new Color('#838D7C');
 export const darkGreen = green.darken(30);
 
-export const tan = new Color('#F7D5AE');
-export const darkTan = tan.desaturate(55).spin(5).darken(45);
+export const tan = new Color('#DEDBD1');
+export const darkTan = tan.desaturate(10).spin(-15).darken(60);
 
 export const salmon = new Color('#E4967D');
 export const darkSalmon = salmon.desaturate(25).spin(-10).darken(35);
@@ -41,18 +45,19 @@ export const bgDark = blue.darken(35);
 
 export const lightTheme = {
   bg: bgLight,
-  text: black,
-  red: red,
-  blue: blue,
-  green: green,
-  tan: tan,
-  salmon: salmon,
-  white: white,
-  offWhite: offWhite,
-  lightGray: lightGray,
-  gray: gray,
-  darkGray: darkGray,
-  black: black
+  text: darkGray,
+  red,
+  blue,
+  aqua,
+  green,
+  tan,
+  salmon,
+  white,
+  offWhite,
+  lightGray,
+  gray,
+  darkGray,
+  black
 }
 
 export const darkTheme = {
@@ -60,6 +65,7 @@ export const darkTheme = {
   text: white,
   red: darkRed,
   blue: darkBlue,
+  aqua: darkaqua,
   green: darkGreen,
   tan: darkTan,
   salmon: darkSalmon,

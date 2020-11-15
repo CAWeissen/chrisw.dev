@@ -3,8 +3,8 @@ import type Color from '../../utils/theme';
 import { StyledContainer, StyledFlexContainer, StyledSection } from './styles';
 
 interface ContainerProps {
-  children: any[];
-  direction?: string;
+  children: any | any[];
+  thin?: boolean;
 };
 
 interface SectionProps {
@@ -12,9 +12,9 @@ interface SectionProps {
   color?: string;
 };
 
-function Container({children}: React.Props<ContainerProps>) {
+function Container({thin = false, children}:ContainerProps) {
   return (
-    <StyledContainer>
+    <StyledContainer thin={thin}>
       {children}
     </StyledContainer>
   );

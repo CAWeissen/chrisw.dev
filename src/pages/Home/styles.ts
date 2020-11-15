@@ -1,7 +1,7 @@
 import { StyledSection } from '../../components/Container/styles';
 import styled from 'styled-components';
 import { StyledImage } from '../../components/Image/styles';
-import { H5} from '../../utils/typography';
+import { H3, P } from '../../utils/typography';
 
 const StyledHome = styled.section`
   display: grid;
@@ -45,53 +45,84 @@ const HomeIntro = styled.div`
       z-index: 0;
     }
   }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+
+    ${StyledImage} {
+      margin-right: 0;
+      width: 100%;
+
+      img {
+        width: 60%;
+      }
+    }
+  }
 `;
 
 const HomeIntroText = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10vmin 0 3vmin;
+
+  @media (max-width: 900px) {
+    margin: 3vmin 0 0;
+  }
 `;
 
 const HomeProjectGrid = styled.div`
-  display: grid;
-  grid-gap: 5vmin;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(20ch, 30vw, 30ch), 1fr));
+  display: flex;
+  flex-direction: column;
 `;
 
 const HomeProjectGridItem = styled.a`
   align-items: center;
   display: flex;
-  height: 200px;
-  justify-content: center;
+  margin-bottom: 5em;
+  overflow: hidden;
   position: relative;
   text-decoration: none;
 
-  &::after {
-    background-color: rgba(0, 0, 0, 0.8);
-    content: '';
-    height: 100%;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    transition: opacity 0.5s cubic-bezier(.39,.03,.08,1.09);
-    width: 100%;
-    z-index: 1;
+  ${H3} {
+    color: var(--textColor);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  ${P} {
+    color: var(--textColor);
   }
 
   &:hover {
-    &::after,
-    ${H5} {
+    video {
       opacity: 1;
-    }
-
-    ${H5} {
-      transform: translateY(0);
     }
   }
 
-  img {
+  @media (max-width: 640px) {
+    flex-direction: column-reverse;
+  }
+`;
+
+const HomeProjectGridItemInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 40%;
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+`;
+
+const HomeProjectGridItemMedia = styled.div`
+  position: relative;
+  margin-right: 3em;
+  max-width: 720px;
+  width: 60%;
+
+  img,
+  video {
     height: 100%;
     left: 0;
     object-fit: cover;
@@ -99,21 +130,26 @@ const HomeProjectGridItem = styled.a`
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 0;
+    transition: opacity 0.5s ease;
   }
 
-  ${H5} {
-    color: white;
-    font-weight: 600;
+  video {
     opacity: 0;
-    margin: 0;
-    padding: 0.5em 1em;
-    text-align: center;
-    transform: translateY(50%);
-    transition: opacity 0.5s cubic-bezier(.39,.03,.08,1.09) 0.15s, transform 0.4s ease 0.05s;
-    z-index: 2;
+    z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    padding-bottom: 75%;
+    width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    margin-right: 0;
+    width:100%;
   }
 `;
 
 
-export { StyledHome, HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem };
+export { StyledHome, HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemInfo, HomeProjectGridItemMedia };

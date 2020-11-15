@@ -5,120 +5,196 @@ import React, { useRef, useState, useEffect } from 'react'
 import * as THREE from 'three';
 import { useFrame } from 'react-three-fiber'
 import { useGLTF } from '@react-three/drei/useGLTF'
+
 import type { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
+import { Shadow } from '@react-three/drei';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Cube015: THREE.Mesh
-    ['Cube.015_1']: THREE.Mesh
-    ['Cube.015_2']: THREE.Mesh
-    ['Cube.015_3']: THREE.Mesh
-    Cube001: THREE.Mesh
-    ['Cube.001_1']: THREE.Mesh
-    ['Cube.001_2']: THREE.Mesh
-    ['Cube.001_3']: THREE.Mesh
-    ['Cube.001_4']: THREE.Mesh
-    ['Cube.001_5']: THREE.Mesh
-    ['Cube.001_6']: THREE.Mesh
-    ['Cube.001_7']: THREE.Mesh
+    Lights_1: THREE.Mesh
+    Lights_2: THREE.Mesh
+    Lights_3: THREE.Mesh
+    Lights_4: THREE.Mesh
+    Body_1: THREE.Mesh
+    Body_2: THREE.Mesh
+    Body_3: THREE.Mesh
+    Body_4: THREE.Mesh
+    Body_5: THREE.Mesh
+    Body_6: THREE.Mesh
+    Body_7: THREE.Mesh
+    Body_8: THREE.Mesh
+    Body_9: THREE.Mesh
     Interior_Shell: THREE.Mesh
-    Circle004: THREE.Mesh
-    ['Circle.004_1']: THREE.Mesh
-    ['Circle.004_2']: THREE.Mesh
-    Circle003: THREE.Mesh
-    ['Circle.003_1']: THREE.Mesh
-    ['Circle.003_2']: THREE.Mesh
-    Circle005: THREE.Mesh
-    ['Circle.005_1']: THREE.Mesh
-    ['Circle.005_2']: THREE.Mesh
-    Circle006: THREE.Mesh
-    ['Circle.006_1']: THREE.Mesh
-    ['Circle.006_2']: THREE.Mesh
+    WheelLF: THREE.Mesh
+    WheelLF_1: THREE.Mesh
+    WheelLF_2: THREE.Mesh
+    WheelLR: THREE.Mesh
+    WheelLR_1: THREE.Mesh
+    WheelLR_2: THREE.Mesh
+    WheelRF: THREE.Mesh
+    WheelRF_1: THREE.Mesh
+    WheelRF_2: THREE.Mesh
+    WheelRR: THREE.Mesh
+    WheelRR_1: THREE.Mesh
+    WheelRR_2: THREE.Mesh
   }
   materials: {
     Body: THREE.MeshPhysicalMaterial
-    Interior: THREE.MeshStandardMaterial
-    ['Material.008']: THREE.MeshStandardMaterial
-    ['Material.009']: THREE.MeshStandardMaterial
+    LightsInterior: THREE.MeshStandardMaterial
+    LightColor: THREE.MeshStandardMaterial
+    InteriorLight: THREE.MeshStandardMaterial
+    Mirror: THREE.MeshStandardMaterial
     Lights: THREE.MeshStandardMaterial
     ['Handles (Chrome)']: THREE.MeshStandardMaterial
     ['Interior (Tan)']: THREE.MeshStandardMaterial
     Windshield: THREE.MeshStandardMaterial
     Trim: THREE.MeshStandardMaterial
     Shell: THREE.MeshStandardMaterial
-    ['Material.015']: THREE.MeshStandardMaterial
-    ['Material.014']: THREE.MeshStandardMaterial
-    ['Material.017']: THREE.MeshStandardMaterial
+    Chrome: THREE.MeshStandardMaterial
+    Tire: THREE.MeshStandardMaterial
+    WheelInterior: THREE.MeshStandardMaterial
   }
 }
 
-type ActionName = 'Close' | 'Open'
+type ActionName = 'closeLights' | 'openLights'
 type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
-export default function Miata(props: JSX.IntrinsicElements['group']) {
-  const group = useRef<THREE.Group>();
-  const { nodes, materials, animations } = useGLTF('/miata.glb') as GLTFResult;
-  console.log(nodes);
+export default function Model(props: JSX.IntrinsicElements['group']) {
+  const group = useRef<THREE.Group>()
+  const grid = useRef<THREE.GridHelper>()
+  const wheelLF = useRef<THREE.Mesh>(null)
+  const wheelLR = useRef<THREE.Mesh>(null)
+  const wheelRF = useRef<THREE.Mesh>(null)
+  const wheelRR = useRef<THREE.Mesh>(null)
+  const wheels = [wheelLF, wheelLR, wheelRF, wheelRR];
+  const wheelSpeed = 0.2;
+  const { nodes, materials, animations } = useGLTF('/miata-lights.glb') as GLTFResult
 
   const actions = useRef<GLTFActions>()
   const [mixer] = useState(() => new THREE.AnimationMixer(null as any))
-  useFrame((state, delta) => mixer.update(delta))
+  useFrame((state, delta) => {
+    mixer.update(delta);
+    if (wheelLF.current) {
+      wheelLF.current.rotation.x += wheelSpeed;
+    }
+
+    if (wheelRF.current) {
+      wheelRF.current.rotation.x += wheelSpeed;
+    }
+
+    if (wheelLR.current) {
+      wheelLR.current.rotation.x += wheelSpeed;
+    }
+
+    if (wheelRR.current) {
+      wheelRR.current.rotation.x += wheelSpeed;
+    }
+
+
+    if (grid.current) {
+      // grid.current.position.z = (delta);
+    }
+  })
   useEffect(() => {
     actions.current = {
-      Close: mixer.clipAction(animations[0], group.current),
-      Open: mixer.clipAction(animations[1], group.current),
+      closeLights: mixer.clipAction(animations[0], group.current),
+      openLights: mixer.clipAction(animations[1], group.current),
     }
+    actions.current.closeLights.setLoop(THREE.LoopOnce, 0);
+    actions.current.openLights.setLoop(THREE.LoopOnce, 0);
+    actions.current.closeLights.clampWhenFinished = true;
+    actions.current.openLights.clampWhenFinished = true;
+
+    window.addEventListener('open', (e) => {
+      mixer.stopAllAction();
+      playAnimation('openLights');
+    });
+    window.addEventListener('close', (e) => {
+      mixer.stopAllAction();
+      playAnimation('closeLights');
+    });
+
     return () => animations.forEach((clip) => mixer.uncacheClip(clip))
   }, [])
+
+  const resetAnimation = (anim:'closeLights' | 'openLights') => {
+    if (actions.current) {
+      actions.current[anim].fadeOut(0);
+    }
+  }
+
+  const playAnimation = (anim:'closeLights' | 'openLights') => {
+    if (actions.current) {
+      actions.current[anim].play();
+    }
+  }
   return (
-    <group ref={group} {...props}>
-      <group position={[0.31, 0.18, 1.03]} rotation={[-Math.PI / 4, 0, 0]}>
-        <group position={[-0.35, 0.33, -0.49]}>
-          <mesh material={materials.Body} geometry={nodes.Cube015.geometry} />
-          <mesh material={materials.Interior} geometry={nodes['Cube.015_1'].geometry} />
-          <mesh material={materials['Material.008']} geometry={nodes['Cube.015_2'].geometry} />
-          <mesh material={materials['Material.009']} geometry={nodes['Cube.015_3'].geometry} />
+    <group {...props}>
+      <group ref={group} position={[0.3116, 0.1826, 1.0329]} rotation={[-Math.PI / 4, 0, 0]}>
+        <group position={[-0.3549, 0.3321, -0.4897]}>
+          <mesh material={materials.Body} geometry={nodes.Lights_1.geometry} castShadow />
+          <mesh material={materials.LightsInterior} geometry={nodes.Lights_2.geometry} castShadow />
+          <mesh material={materials.LightColor} geometry={nodes.Lights_3.geometry} castShadow />
+          <mesh material={materials.InteriorLight} geometry={nodes.Lights_4.geometry} castShadow />
         </group>
       </group>
-      <group position={[-0.03, 0.15, 0.06]}>
-        <mesh material={materials.Body} geometry={nodes.Cube001.geometry} />
-        <mesh material={materials.Interior} geometry={nodes['Cube.001_1'].geometry} />
-        <mesh material={materials.Lights} geometry={nodes['Cube.001_2'].geometry} />
-        <mesh material={materials['Handles (Chrome)']} geometry={nodes['Cube.001_3'].geometry} />
-        <mesh material={materials['Interior (Tan)']} geometry={nodes['Cube.001_4'].geometry} />
-        <mesh material={materials.Windshield} geometry={nodes['Cube.001_5'].geometry} />
-        <mesh material={materials.Trim} geometry={nodes['Cube.001_6'].geometry} />
-        <mesh material={materials.Shell} geometry={nodes['Cube.001_7'].geometry} />
+      <group position={[-0.0283, 0.152, 0.059]}>
+        <mesh material={materials.Body} geometry={nodes.Body_1.geometry} castShadow />
+        <mesh material={materials.Mirror} geometry={nodes.Body_2.geometry} castShadow />
+        <mesh material={materials.LightsInterior} geometry={nodes.Body_3.geometry} castShadow />
+        <mesh material={materials.Lights} geometry={nodes.Body_4.geometry} castShadow />
+        <mesh material={materials['Handles (Chrome)']} geometry={nodes.Body_5.geometry} castShadow />
+        <mesh material={materials['Interior (Tan)']} geometry={nodes.Body_6.geometry} castShadow />
+        <mesh material={materials.Windshield} geometry={nodes.Body_7.geometry} castShadow />
+        <mesh material={materials.Trim} geometry={nodes.Body_8.geometry} castShadow />
+        <mesh material={materials.Shell} geometry={nodes.Body_9.geometry} castShadow />
       </group>
       <mesh
         material={materials.Shell}
         geometry={nodes.Interior_Shell.geometry}
-        position={[-0.04, -0.05, 1.23]}
-        rotation={[1.91, 0, 0]}
-        scale={[0.1, 0.1, 0.1]}
+        position={[-0.0446, -0.0469, 1.2338]}
+        rotation={[1.9137, 0, 0]}
+        scale={[0.0961, 0.0961, 0.0961]}
       />
-      <group position={[0.45, -0.1, 0.82]} rotation={[-0.16, 0, -Math.PI / 2]} scale={[0.08, 0.09, 0.08]}>
-        <mesh material={materials['Material.015']} geometry={nodes.Circle004.geometry} />
-        <mesh material={materials['Material.014']} geometry={nodes['Circle.004_1'].geometry} />
-        <mesh material={materials['Material.017']} geometry={nodes['Circle.004_2'].geometry} />
+      <group
+        ref={wheelLF}
+        position={[0.4548, -0.0953, 0.8169]}
+        rotation={[-0.1556, 0, -Math.PI / 2]}
+        scale={[0.0763, 0.0903, 0.0763]}>
+        <mesh material={materials.Chrome} geometry={nodes.WheelLF.geometry} castShadow />
+        <mesh material={materials.Tire} geometry={nodes.WheelLF_1.geometry} castShadow />
+        <mesh material={materials.WheelInterior} geometry={nodes.WheelLF_2.geometry} castShadow />
       </group>
-      <group position={[0.45, -0.1, -0.74]} rotation={[-0.16, 0, -Math.PI / 2]} scale={[0.08, 0.09, 0.08]}>
-        <mesh material={materials['Material.015']} geometry={nodes.Circle003.geometry} />
-        <mesh material={materials['Material.014']} geometry={nodes['Circle.003_1'].geometry} />
-        <mesh material={materials['Material.017']} geometry={nodes['Circle.003_2'].geometry} />
+      <group
+        ref={wheelLR}
+        position={[0.4548, -0.0953, -0.7351]}
+        rotation={[-0.1556, 0, -Math.PI / 2]}
+        scale={[0.0763, 0.0903, 0.0763]}>
+        <mesh material={materials.Chrome} geometry={nodes.WheelLR.geometry} castShadow />
+        <mesh material={materials.Tire} geometry={nodes.WheelLR_1.geometry} castShadow />
+        <mesh material={materials.WheelInterior} geometry={nodes.WheelLR_2.geometry} castShadow />
       </group>
-      <group position={[-0.54, -0.1, 0.82]} rotation={[-0.16, 0, -Math.PI / 2]} scale={[0.08, 0.09, 0.08]}>
-        <mesh material={materials['Material.015']} geometry={nodes.Circle005.geometry} />
-        <mesh material={materials['Material.014']} geometry={nodes['Circle.005_1'].geometry} />
-        <mesh material={materials['Material.017']} geometry={nodes['Circle.005_2'].geometry} />
+      <group
+        ref={wheelRF}
+        position={[-0.5385, -0.0953, 0.8169]}
+        rotation={[-0.1556, 0, -Math.PI / 2]}
+        scale={[0.0763, 0.0903, 0.0763]}>
+        <mesh material={materials.Chrome} geometry={nodes.WheelRF.geometry} castShadow />
+        <mesh material={materials.Tire} geometry={nodes.WheelRF_1.geometry} castShadow />
+        <mesh material={materials.WheelInterior} geometry={nodes.WheelRF_2.geometry} castShadow />
       </group>
-      <group position={[-0.54, -0.1, -0.74]} rotation={[-0.16, 0, -Math.PI / 2]} scale={[0.08, 0.09, 0.08]}>
-        <mesh material={materials['Material.015']} geometry={nodes.Circle006.geometry} />
-        <mesh material={materials['Material.014']} geometry={nodes['Circle.006_1'].geometry} />
-        <mesh material={materials['Material.017']} geometry={nodes['Circle.006_2'].geometry} />
+      <group
+        ref={wheelRR}
+        position={[-0.5385, -0.0953, -0.7351]}
+        rotation={[-0.1556, 0, -Math.PI / 2]}
+        scale={[0.0763, 0.0903, 0.0763]}>
+        <mesh material={materials.Chrome} geometry={nodes.WheelRR.geometry} castShadow />
+        <mesh material={materials.Tire} geometry={nodes.WheelRR_1.geometry} castShadow />
+        <mesh material={materials.WheelInterior} geometry={nodes.WheelRR_2.geometry} castShadow />
       </group>
+      <Shadow scale={[2, 4, 1]} opacity={1} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} />
     </group>
   )
 }
 
-useGLTF.preload('/miata.glb')
+useGLTF.preload('/miata-lights.glb')

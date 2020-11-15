@@ -7,9 +7,20 @@ const StyledHeader = styled.header`
   height: 100px;
   width: 100%;
 
-  a:first-child {
-    margin-right: auto;
-    max-height: 100%;
+  a  {
+    color: var(--textColor);
+
+    &:first-child {
+      margin-right: auto;
+      max-height: 100%;
+    }
+
+    &:not(:first-child) {
+        svg {
+        margin-left: 1em;
+        width: 32px;
+      }
+    }
   }
 
   img {

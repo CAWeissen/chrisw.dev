@@ -11,6 +11,8 @@ const StyledLogo = styled.div`
     color: var(--textColor);
     align-items: center;
     display: flex;
+    font-family: var(--fontSerif);
+    font-size: 1.5em;
     font-weight: 600;
     text-decoration: none;
   }
