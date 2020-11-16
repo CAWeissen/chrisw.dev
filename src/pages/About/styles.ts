@@ -14,6 +14,14 @@ const StyledAbout = styled.section`
   ${H1} {
     font-style: italic;
   }
+
+  .miata-text {
+    max-width: 50%;
+
+    @media screen and (max-width: 640px) {
+      max-width: 100%;
+    }
+  }
 `;
 
 export { StyledAbout };

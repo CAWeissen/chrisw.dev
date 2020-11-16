@@ -2,8 +2,10 @@ import * as React from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame } from 'react-three-fiber';
 import { OrbitControls, PerspectiveCamera, Plane, Shadow } from '@react-three/drei';
+import Gallery from 'react-photo-gallery';
 
 import { StyledAbout } from './styles';
+import { photos } from '../../utils/constants';
 import { bgDark, bgLight } from '../../utils/theme';
 import { H1, H2, H4 } from '../../utils/typography';
 import { Container, Section } from '../../components/Container';
@@ -56,13 +58,13 @@ function About({darkMode}: AboutProps) {
 
   return (
     <StyledAbout>
-      <Section style={{height: 'calc(100vh - 100px)'}}>
+      <Section style={{minHeight: 'calc(100vh - 100px)', paddingTop: 100}}>
         <Container>
-          <H4 style={{maxWidth: '50%'}}>If you've ever seen the tall redhead in the tiny car driving around Charlotte...</H4>
+          <H4 class="miata-text" style={{maxWidth: '50%'}}>If you've ever seen the tall redhead in the tiny car driving around Charlotte...</H4>
           <H1>That's me.</H1>
           <Button color={'aqua'} onClick={toggleLights}>Toggle Lights</Button>
         </Container>
-        <Canvas style={{height: 'calc(100vh - 100px)', position: 'absolute', left: 0, top: 0, width: '100vw', zIndex: 0}}>
+        <Canvas style={{minHeight: 'calc(100vh - 100px)', position: 'absolute', left: 0, top: 0, width: '100vw', zIndex: 0}}>
           <PerspectiveCamera makeDefault fov={45} position={[0, 0.5, 4]} rotation={[0, 0, 0]} />
           {/* <OrbitControls enablePan={true} enableRotate={true} enableZoom={false} minPolarAngle={Math.PI / 2.5} maxPolarAngle={Math.PI / 3} /> */}
           <fog attach="fog" args={[bgColor, 5, 15]} />
@@ -90,6 +92,7 @@ function About({darkMode}: AboutProps) {
       <Section color='black'>
         <Container>
           <H2>I take photos too</H2>
+          <Gallery photos={photos} />
         </Container>
       </Section>
     </StyledAbout>

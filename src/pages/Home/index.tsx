@@ -33,8 +33,8 @@ function Home({}:HomeProps) {
           <HomeProjectGrid>
             <HomeProjectGridItem href="https://www.pepsicares.com" target="_blank" rel="noopener noreferrer">
               <HomeProjectGridItemMedia>
-                <img src="/assets/img/pepsi-cares.jpg" alt="Pepsi Cares"></img>
-                <video src="/assets/video/pepsicares.webm" poster="/assets/img/pepsi-cares.jpg" autoPlay muted loop></video>
+                <img src="/assets/img/projects/pepsi-cares.jpg" alt="Pepsi Cares"></img>
+                <video src="/assets/video/pepsicares.webm" poster="/assets/img/projects/pepsi-cares.jpg" autoPlay muted loop></video>
               </HomeProjectGridItemMedia>
               <HomeProjectGridItemInfo>
                 <H3>Pepsi Cares</H3>
@@ -53,8 +53,8 @@ function Home({}:HomeProps) {
 
             <HomeProjectGridItem href="https://www.union.co" target="_blank" rel="noopener noreferrer">
               <HomeProjectGridItemMedia>
-                <img src="/assets/img/union.jpg" alt="Union"></img>
-                <video src="/assets/video/union.webm" poster="/assets/img/union.jpg" autoPlay muted loop></video>
+                <img src="/assets/img/projects/union.jpg" alt="Union"></img>
+                <video src="/assets/video/union.webm" poster="/assets/img/projects/union.jpg" autoPlay muted loop></video>
               </HomeProjectGridItemMedia>
               <HomeProjectGridItemInfo>
                 <H3>Union</H3>
@@ -68,8 +68,8 @@ function Home({}:HomeProps) {
 
             <HomeProjectGridItem href="https://www.seagate.com" target="_blank" rel="noopener noreferrer">
               <HomeProjectGridItemMedia>
-                <img src="/assets/img/seagate.jpg" alt="Seagate"></img>
-                <video src="/assets/video/seagate.webm" poster="/assets/img/seagate.jpg" autoPlay muted loop></video>
+                <img src="/assets/img/projects/seagate.jpg" alt="Seagate"></img>
+                <video src="/assets/video/seagate.webm" poster="/assets/img/projects/seagate.jpg" autoPlay muted loop></video>
               </HomeProjectGridItemMedia>
               <HomeProjectGridItemInfo>
                 <H3>Seagate</H3>
@@ -79,8 +79,8 @@ function Home({}:HomeProps) {
 
             <HomeProjectGridItem href="https://www.charlotteregion.com" target="_blank" rel="noopener noreferrer">
               <HomeProjectGridItemMedia>
-                <img src="/assets/img/crba.jpg" alt="Charlotte Regional Business Alliance"></img>
-                <video src="/assets/video/crba.webm" poster="/assets/img/crba.jpg" autoPlay muted loop></video>
+                <img src="/assets/img/projects/crba.jpg" alt="Charlotte Regional Business Alliance"></img>
+                <video src="/assets/video/crba.webm" poster="/assets/img/projects/crba.jpg" autoPlay muted loop></video>
               </HomeProjectGridItemMedia>
               <HomeProjectGridItemInfo>
                 <H3>Charlotte Regional Business Alliance</H3>
@@ -90,8 +90,8 @@ function Home({}:HomeProps) {
 
             <HomeProjectGridItem href="https://www.charlottesgotalot.com" target="_blank" rel="noopener noreferrer">
               <HomeProjectGridItemMedia>
-                <img src="/assets/img/charlottesgotalot-trails.jpg" alt="Charlotte's Got a Lot"></img>
-                <video src="/assets/video/crva-trails.webm" poster="/assets/img/charlottesgotalot-trails.jpg" autoPlay muted loop></video>
+                <img src="/assets/img/projects/charlottesgotalot-trails.jpg" alt="Charlotte's Got a Lot"></img>
+                <video src="/assets/video/crva-trails.webm" poster="/assets/img/projects/charlottesgotalot-trails.jpg" autoPlay muted loop></video>
               </HomeProjectGridItemMedia>
               <HomeProjectGridItemInfo>
                 <H3>Charlotte's Got A Lot</H3>
@@ -100,8 +100,8 @@ function Home({}:HomeProps) {
 
             {/* <HomeProjectGridItem href="https://www.nascarhall.com" target="_blank" rel="noopener noreferrer">
               <HomeProjectGridItemMedia>
-                <img src="/assets/img/nascar-hall.jpg" alt="Nascar Hall of Fame"></img>
-                <video src="/assets/video/nascar-hall.webm" poster="/assets/img/nascar-hall.jpg" autoPlay muted loop></video>
+                <img src="/assets/img/projects/nascar-hall.jpg" alt="Nascar Hall of Fame"></img>
+                <video src="/assets/video/nascar-hall.webm" poster="/assets/img/projects/nascar-hall.jpg" autoPlay muted loop></video>
               </HomeProjectGridItemMedia>
               <HomeProjectGridItemInfo>
                 <H3>Nascar Hall of Fame</H3>
@@ -110,8 +110,8 @@ function Home({}:HomeProps) {
 
             <HomeProjectGridItem href="https://www.channelpa.com" target="_blank" rel="noopener noreferrer">
               <HomeProjectGridItemMedia>
-                <img src="/assets/img/channelpa.jpg" alt="Channel Prime Alliance"></img>
-                <video src="/assets/video/channelpa.webm" poster="/assets/img/channelpa.jpg" autoPlay muted loop></video>
+                <img src="/assets/img/projects/channelpa.jpg" alt="Channel Prime Alliance"></img>
+                <video src="/assets/video/channelpa.webm" poster="/assets/img/projects/channelpa.jpg" autoPlay muted loop></video>
               </HomeProjectGridItemMedia>
               <HomeProjectGridItemInfo>
                 <H3>Channel Prime Alliance</H3>
