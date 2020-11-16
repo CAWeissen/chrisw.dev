@@ -7,7 +7,13 @@ import { useFrame } from 'react-three-fiber'
 import { useGLTF } from '@react-three/drei/useGLTF'
 
 import type { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
-import { Shadow } from '@react-three/drei';
+import { Box, Shadow, useHelper } from '@react-three/drei';
+import { makeFolder, useTweaks } from 'use-tweaks';
+
+type MiataProps = {
+  darkMode: boolean;
+  lightsStatus: 'open' | 'close';
+}
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -59,7 +65,13 @@ type GLTFResult = GLTF & {
 type ActionName = 'closeLights' | 'openLights'
 type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
-export default function Model(props: JSX.IntrinsicElements['group']) {
+export default function Miata(props: JSX.IntrinsicElements['group'] & MiataProps) {
+  const { lightsStatus, darkMode } = props;
+  const [lights, setLights] = useState<boolean>(lightsStatus === 'open');
+  const headlightLeft = useRef<THREE.SpotLight>()
+  const headlightRight = useRef<THREE.SpotLight>()
+  const headlightLeftTarget = useRef<THREE.BoxGeometry>();
+  const headlightRightTarget = useRef<THREE.BoxGeometry>();
   const group = useRef<THREE.Group>()
   const grid = useRef<THREE.GridHelper>()
   const wheelLF = useRef<THREE.Mesh>(null)
@@ -67,11 +79,35 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const wheelRF = useRef<THREE.Mesh>(null)
   const wheelRR = useRef<THREE.Mesh>(null)
   const wheels = [wheelLF, wheelLR, wheelRF, wheelRR];
-  const wheelSpeed = 0.2;
-  const { nodes, materials, animations } = useGLTF('/miata-lights.glb') as GLTFResult
+  const wheelSpeed = 0.175;
+  const { nodes, materials, animations } = useGLTF('/miata.glb') as GLTFResult
+  const initialLightRotation = darkMode ? (-Math.PI  / 4) : 0;
 
   const actions = useRef<GLTFActions>()
   const [mixer] = useState(() => new THREE.AnimationMixer(null as any))
+
+  // const { intensity, pX, pY, pZ } = useTweaks({
+  //   intensity: {
+  //     value: 1,
+  //     min: 0,
+  //     max: 1
+  //   },
+  //   ...makeFolder('Position', {
+  //     pX: {
+  //       value: spotlightPosition.x,
+  //       step: 0.1
+  //     },
+  //     pY: {
+  //       value: spotlightPosition.y,
+  //       step: 0.1
+  //     },
+  //     pZ: {
+  //       value: spotlightPosition.z,
+  //       step: 0.1
+  //     }
+  //   })
+  // });
+
   useFrame((state, delta) => {
     mixer.update(delta);
     if (wheelLF.current) {
@@ -90,12 +126,27 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
       wheelRR.current.rotation.x += wheelSpeed;
     }
 
-
     if (grid.current) {
       // grid.current.position.z = (delta);
     }
+
+    if (headlightLeft.current
+     && headlightRight.current
+     && headlightLeftTarget.current
+     && headlightRightTarget.current) {
+      headlightLeft.current.target = headlightLeftTarget.current;
+      headlightLeft.current.updateMatrixWorld();
+      headlightRight.current.target = headlightLeftTarget.current;
+      headlightRight.current.updateMatrixWorld();
+    }
   })
+
   useEffect(() => {
+    for (const key in nodes) {
+      if (nodes[key].type === 'Mesh') {
+        nodes[key].castShadow = true;
+      }
+    };
     actions.current = {
       closeLights: mixer.clipAction(animations[0], group.current),
       openLights: mixer.clipAction(animations[1], group.current),
@@ -108,46 +159,51 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
     window.addEventListener('open', (e) => {
       mixer.stopAllAction();
       playAnimation('openLights');
+      setLights(true);
     });
+
     window.addEventListener('close', (e) => {
       mixer.stopAllAction();
       playAnimation('closeLights');
+      setLights(false);
     });
 
-    return () => animations.forEach((clip) => mixer.uncacheClip(clip))
+    // return () => animations.forEach((clip) => mixer.uncacheClip(clip))
   }, [])
-
-  const resetAnimation = (anim:'closeLights' | 'openLights') => {
-    if (actions.current) {
-      actions.current[anim].fadeOut(0);
-    }
-  }
 
   const playAnimation = (anim:'closeLights' | 'openLights') => {
     if (actions.current) {
+      console.log(actions.current[anim]);
       actions.current[anim].play();
     }
   }
+
   return (
     <group {...props}>
-      <group ref={group} position={[0.3116, 0.1826, 1.0329]} rotation={[-Math.PI / 4, 0, 0]}>
+      <group ref={group} position={[0.3116, 0.1826, 1.0329]} rotation={[initialLightRotation, 0, 0]}>
         <group position={[-0.3549, 0.3321, -0.4897]}>
-          <mesh material={materials.Body} geometry={nodes.Lights_1.geometry} castShadow />
-          <mesh material={materials.LightsInterior} geometry={nodes.Lights_2.geometry} castShadow />
-          <mesh material={materials.LightColor} geometry={nodes.Lights_3.geometry} castShadow />
-          <mesh material={materials.InteriorLight} geometry={nodes.Lights_4.geometry} castShadow />
+          <mesh material={materials.Body} geometry={nodes.Lights_1.geometry} castShadow receiveShadow />
+          <mesh material={materials.LightsInterior} geometry={nodes.Lights_2.geometry} castShadow receiveShadow />
+          <mesh material={materials.LightColor} geometry={nodes.Lights_3.geometry} castShadow receiveShadow />
+          <mesh material={materials.InteriorLight} geometry={nodes.Lights_4.geometry} castShadow receiveShadow />
         </group>
+        <spotLight ref={headlightLeft} position={[0, -0.1, 0.1]} intensity={lights ? 3 : 0} penumbra={0.15} castShadow />
+        <spotLight ref={headlightRight} position={[-0.7, -0.1, 0.1]} intensity={lights ? 3 : 0} penumbra={0.15} castShadow />
+        <pointLight position={[0, -0.15, 0.1]} intensity={lights ? 40 : 0} distance={0.11} decay={1} />
+        <pointLight position={[-0.7, -0.15, 0.1]} intensity={lights ? 40 : 0} distance={0.11} decay={1} />
+        <Box ref={headlightLeftTarget} scale={[0, 0, 0]} position={[0, -13, 15]} />
+        <Box ref={headlightRightTarget} scale={[0, 0, 0]} position={[0, -13, 15]} />
       </group>
       <group position={[-0.0283, 0.152, 0.059]}>
-        <mesh material={materials.Body} geometry={nodes.Body_1.geometry} castShadow />
-        <mesh material={materials.Mirror} geometry={nodes.Body_2.geometry} castShadow />
-        <mesh material={materials.LightsInterior} geometry={nodes.Body_3.geometry} castShadow />
-        <mesh material={materials.Lights} geometry={nodes.Body_4.geometry} castShadow />
-        <mesh material={materials['Handles (Chrome)']} geometry={nodes.Body_5.geometry} castShadow />
-        <mesh material={materials['Interior (Tan)']} geometry={nodes.Body_6.geometry} castShadow />
-        <mesh material={materials.Windshield} geometry={nodes.Body_7.geometry} castShadow />
-        <mesh material={materials.Trim} geometry={nodes.Body_8.geometry} castShadow />
-        <mesh material={materials.Shell} geometry={nodes.Body_9.geometry} castShadow />
+        <mesh material={materials.Body} geometry={nodes.Body_1.geometry} castShadow receiveShadow />
+        <mesh material={materials.Mirror} geometry={nodes.Body_2.geometry} castShadow receiveShadow />
+        <mesh material={materials.LightsInterior} geometry={nodes.Body_3.geometry} castShadow receiveShadow />
+        <mesh material={materials.Lights} geometry={nodes.Body_4.geometry} castShadow receiveShadow />
+        <mesh material={materials['Handles (Chrome)']} geometry={nodes.Body_5.geometry} castShadow receiveShadow />
+        <mesh material={materials['Interior (Tan)']} geometry={nodes.Body_6.geometry} castShadow receiveShadow />
+        <mesh material={materials.Windshield} geometry={nodes.Body_7.geometry} castShadow receiveShadow />
+        <mesh material={materials.Trim} geometry={nodes.Body_8.geometry} castShadow receiveShadow />
+        <mesh material={materials.Shell} geometry={nodes.Body_9.geometry} castShadow receiveShadow />
       </group>
       <mesh
         material={materials.Shell}
@@ -161,40 +217,40 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
         position={[0.4548, -0.0953, 0.8169]}
         rotation={[-0.1556, 0, -Math.PI / 2]}
         scale={[0.0763, 0.0903, 0.0763]}>
-        <mesh material={materials.Chrome} geometry={nodes.WheelLF.geometry} castShadow />
-        <mesh material={materials.Tire} geometry={nodes.WheelLF_1.geometry} castShadow />
-        <mesh material={materials.WheelInterior} geometry={nodes.WheelLF_2.geometry} castShadow />
+        <mesh material={materials.Chrome} geometry={nodes.WheelLF.geometry} castShadow receiveShadow />
+        <mesh material={materials.Tire} geometry={nodes.WheelLF_1.geometry} castShadow receiveShadow />
+        <mesh material={materials.WheelInterior} geometry={nodes.WheelLF_2.geometry} castShadow receiveShadow />
       </group>
       <group
         ref={wheelLR}
         position={[0.4548, -0.0953, -0.7351]}
         rotation={[-0.1556, 0, -Math.PI / 2]}
         scale={[0.0763, 0.0903, 0.0763]}>
-        <mesh material={materials.Chrome} geometry={nodes.WheelLR.geometry} castShadow />
-        <mesh material={materials.Tire} geometry={nodes.WheelLR_1.geometry} castShadow />
-        <mesh material={materials.WheelInterior} geometry={nodes.WheelLR_2.geometry} castShadow />
+        <mesh material={materials.Chrome} geometry={nodes.WheelLR.geometry} castShadow receiveShadow />
+        <mesh material={materials.Tire} geometry={nodes.WheelLR_1.geometry} castShadow receiveShadow />
+        <mesh material={materials.WheelInterior} geometry={nodes.WheelLR_2.geometry} castShadow receiveShadow />
       </group>
       <group
         ref={wheelRF}
         position={[-0.5385, -0.0953, 0.8169]}
         rotation={[-0.1556, 0, -Math.PI / 2]}
         scale={[0.0763, 0.0903, 0.0763]}>
-        <mesh material={materials.Chrome} geometry={nodes.WheelRF.geometry} castShadow />
-        <mesh material={materials.Tire} geometry={nodes.WheelRF_1.geometry} castShadow />
-        <mesh material={materials.WheelInterior} geometry={nodes.WheelRF_2.geometry} castShadow />
+        <mesh material={materials.Chrome} geometry={nodes.WheelRF.geometry} castShadow receiveShadow />
+        <mesh material={materials.Tire} geometry={nodes.WheelRF_1.geometry} castShadow receiveShadow />
+        <mesh material={materials.WheelInterior} geometry={nodes.WheelRF_2.geometry} castShadow receiveShadow />
       </group>
       <group
         ref={wheelRR}
         position={[-0.5385, -0.0953, -0.7351]}
         rotation={[-0.1556, 0, -Math.PI / 2]}
         scale={[0.0763, 0.0903, 0.0763]}>
-        <mesh material={materials.Chrome} geometry={nodes.WheelRR.geometry} castShadow />
-        <mesh material={materials.Tire} geometry={nodes.WheelRR_1.geometry} castShadow />
-        <mesh material={materials.WheelInterior} geometry={nodes.WheelRR_2.geometry} castShadow />
+        <mesh material={materials.Chrome} geometry={nodes.WheelRR.geometry} castShadow receiveShadow />
+        <mesh material={materials.Tire} geometry={nodes.WheelRR_1.geometry} castShadow receiveShadow />
+        <mesh material={materials.WheelInterior} geometry={nodes.WheelRR_2.geometry} castShadow receiveShadow />
       </group>
-      <Shadow scale={[2, 4, 1]} opacity={1} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+      {/* <Shadow scale={[2, 4, 1]} opacity={1} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} /> */}
     </group>
   )
 }
 
-useGLTF.preload('/miata-lights.glb')
+useGLTF.preload('/miata.glb')

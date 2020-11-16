@@ -37,7 +37,7 @@ export const white = new Color('#fff');
 export const offWhite = new Color('#f6f6f6');
 export const lightGray = new Color('#e5e5e5');
 export const gray = new Color('#a7a7a7');
-export const darkGray = new Color('#353535');
+export const darkGray = new Color('#252525');
 export const black = new Color('#222');
 
 export const bgLight = new Color('#f5f4ff');

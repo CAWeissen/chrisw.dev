@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { StyledButton } from './styles';
 
-interface SectionProps {
+interface ButtonProps {
   children: any[] | any;
   color?: string;
+  tiny?: boolean;
 };
 
 function Button(props:any, {}) {
   const {
-    color,
     children,
     ...buttonProps
   } = props;
 
   return (
-    <StyledButton color={color} {...buttonProps}>
+    <StyledButton {...buttonProps}>
       {children}
     </StyledButton>
   )

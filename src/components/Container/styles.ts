@@ -46,6 +46,7 @@ const StyledSection = styled.section<SectionProps>`
   ${props => props.full && 'height: 100vh;'}
   padding: 10vmin 0;
   position: relative;
+  transition: all 0.5s ease;
   width: 100%;
 
   @media (prefers-color-scheme: dark) {

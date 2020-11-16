@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { LinkProps } from 'react-router-dom';
 import { StyledLink } from './styles';
 
 interface SectionProps {
@@ -6,15 +7,14 @@ interface SectionProps {
   color?: string;
 };
 
-function Button(props:any, {}) {
-  const {
+function Link(props:LinkProps, {}) {
+  const{
     children,
     ...linkProps
   } = props;
-
   return (
-    <StyledLink {...linkProps}>
-      {children}
+    <StyledLink {...props}>
+      {props.children}
     </StyledLink>
   )
 }

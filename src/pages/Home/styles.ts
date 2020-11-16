@@ -61,6 +61,7 @@ const HomeIntro = styled.div`
 `;
 
 const HomeIntroText = styled.div`
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   margin: 10vmin 0 3vmin;
@@ -71,8 +72,13 @@ const HomeIntroText = styled.div`
 `;
 
 const HomeProjectGrid = styled.div`
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+
+  /* CSS Grid */
+  display: grid;
+  grid-gap: 5vw;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(20ch, 30vw, 40ch), 1fr));
 `;
 
 const HomeProjectGridItem = styled.a`
@@ -82,6 +88,9 @@ const HomeProjectGridItem = styled.a`
   overflow: hidden;
   position: relative;
   text-decoration: none;
+
+  /* CSS Grid */
+  margin-bottom: 0;
 
   ${H3} {
     color: var(--textColor);
@@ -99,18 +108,21 @@ const HomeProjectGridItem = styled.a`
     }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     flex-direction: column-reverse;
   }
 `;
 
 const HomeProjectGridItemInfo = styled.div`
+  align-items: flex-start;
   display: flex;
+  display: none;
   flex-direction: column;
   height: 100%;
   width: 40%;
 
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
+    margin-bottom: 2em;
     width: 100%;
   }
 `;
@@ -120,6 +132,10 @@ const HomeProjectGridItemMedia = styled.div`
   margin-right: 3em;
   max-width: 720px;
   width: 60%;
+
+  /* CSS Grid */
+  margin-right: 0;
+  width:  100%;
 
   img,
   video {
@@ -145,7 +161,7 @@ const HomeProjectGridItemMedia = styled.div`
     width: 100%;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     margin-right: 0;
     width:100%;
   }

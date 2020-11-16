@@ -31,10 +31,11 @@ function FlexContainer(props:any) {
 function Section(props:SectionProps) {
   const {
     color,
-    children
+    children,
+    ...sectionProps
   } = props;
   return (
-    <StyledSection bg={color}>
+    <StyledSection {...sectionProps} bg={color}>
       {children}
     </StyledSection>
   );

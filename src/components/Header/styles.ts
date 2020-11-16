@@ -5,18 +5,18 @@ const StyledHeader = styled.header`
   background-color: var(--bgColor);
   color: var(--textColor);
   height: 100px;
+  position: fixed;
+  top: 0;
   width: 100%;
+  z-index: 5;
 
   a  {
+    align-items: center;
     color: var(--textColor);
-
-    &:first-child {
-      margin-right: auto;
-      max-height: 100%;
-    }
+    display: flex;
 
     &:not(:first-child) {
-        svg {
+      svg {
         margin-left: 1em;
         width: 32px;
       }
@@ -37,14 +37,15 @@ const StyledHeader = styled.header`
 const StyledNavItem = styled.div`
   align-items: center;
   display: flex;
-  height: 100%;
+  height: 40px;
   position: relative;
 
   a {
     color: var(--textColor);
     font-size: clamp(1em, 1.25vw, 1.25em);
     font-weight: bold;
-    padding: 0 1em;
+    padding: 0;
+    margin: 0 1em;
     text-decoration: none;
     text-transform: uppercase;
   }
@@ -53,12 +54,12 @@ const StyledNavItem = styled.div`
     border-bottom: 1px solid currentColor;
     bottom: 0;
     content: '';
-    left: 0;
+    left: 1em;
     position: absolute;
     transition: transform 0.4s ease;
     transform: scaleX(0);
     transform-origin: right;
-    width: 100%;
+    width: calc(100% - 2em);
   }
 
   &:hover {

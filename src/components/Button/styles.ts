@@ -4,6 +4,9 @@ import styled from 'styled-components';
 
 type ButtonProps = {
   color?: string;
+  icon?: boolean;
+  round?: boolean;
+  tiny?: boolean;
 }
 
 const StyledButton = styled.button<ButtonProps>`
@@ -12,16 +15,22 @@ const StyledButton = styled.button<ButtonProps>`
   align-items: center;
   background-color: var(--bgColor);
   border: none;
-  border-radius: 0.25em;
+  border-radius: ${props => props.round ? '50%' : '0.25em'};
   color: var(--textColor);
   cursor: pointer;
   display: flex;
-  font-size: 20px;
+  font-size: ${props => props.tiny ? '14px' : '20px'};
   font-weight: bold;
   justify-content: center;
-  padding: 1em 1.5em;
+  padding: ${props => props.tiny ? '0.5em 0.75em' : '1em 1.5em'};
   position: relative;
   text-decoration: none;
+  white-space: nowrap;
+  ${props => props.icon && `
+    height: 40px;
+    flex-shrink: 0;
+    width: 40px;
+  `}
 
   &:hover {
     --bgColor:

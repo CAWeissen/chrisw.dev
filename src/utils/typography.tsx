@@ -48,6 +48,7 @@ const P = styled.p<CopyProps>`
   font-family: ${props => props.serif ? 'var(--fontSerif)' : 'var(--fontSans)'};
   font-size: clamp(1.35em, 1.75vw, 1.5em);
   font-weight: 600;
+  margin-top: 0;
 `;
 
 export { H1, H2, H3, H4, H5, H6, P }

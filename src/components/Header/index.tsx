@@ -5,23 +5,31 @@ import { Link } from 'react-router-dom';
 import { Container } from '../Container/index';
 import Codepen from '../../assets/codepen.svg'
 import Instagram from '../../assets/instagram.svg'
+import Button from '../Button';
 
-interface HeaderProps {};
+interface HeaderProps {
+  darkMode: any;
+};
 
-function Header({}: React.Props<HeaderProps>) {
+function Header({darkMode}:HeaderProps) {
+  const toggleDarkMode = () => {
+    darkMode.toggle();
+  }
+
   return (
     <StyledHeader>
       <Container>
         <Logo />
-        {/* <StyledNavItem>
+        <StyledNavItem>
           <Link to="/about">About</Link>
         </StyledNavItem>
-        <StyledNavItem>
+        {/* <StyledNavItem>
           <Link to="/projects">Projects</Link>
-        </StyledNavItem>
-        <StyledNavItem>
+        </StyledNavItem> */}
+        {/* <StyledNavItem>
           <Link to="/styleguide">Styleguide</Link>
         </StyledNavItem> */}
+        <Button icon round tiny onClick={toggleDarkMode}>{darkMode.value ? '☀️' : '🌙'}</Button>
         <a href="https://codepen.io/CAWeissen" target="_blank" rel="noopener noreferrer">
           <Codepen/>
         </a>
