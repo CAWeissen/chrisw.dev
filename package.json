@@ -9,8 +9,10 @@
   "dependencies": {
     "@react-three/drei": "^2.2.6",
     "@react-three/gltfjsx": "^3.0.8",
+    "lerp": "^1.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-intersection-observer": "^8.30.3",
     "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^5.2.0",
     "react-three-fiber": "^5.1.7",

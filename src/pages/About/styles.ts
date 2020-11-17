@@ -1,4 +1,4 @@
-import { StyledContainer } from '../../components/Container/styles';
+import { StyledSection } from '../../components/Container/styles';
 import styled from 'styled-components';
 import { H1 } from '../../utils/typography';
 
@@ -6,22 +6,21 @@ const StyledAbout = styled.section`
   display: grid;
   width: 100%;
 
-  ${StyledContainer} {
-    position: relative;
-    z-index: 1;
-  }
-
   ${H1} {
     font-style: italic;
   }
 
-  .miata-text {
-    max-width: 50%;
-
-    @media screen and (max-width: 640px) {
-      max-width: 100%;
-    }
+  ${StyledSection} {
+    min-height: calc(100vh - 100px);
   }
 `;
 
-export { StyledAbout };
+const StyledAboutIntro = styled.div`
+  width: 100%;
+
+  @media screen and (min-width: 640px) {
+    width: 50%;
+  }
+`;
+
+export { StyledAbout, StyledAboutIntro };

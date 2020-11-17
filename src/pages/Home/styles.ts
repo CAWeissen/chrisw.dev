@@ -81,13 +81,17 @@ const HomeProjectGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(clamp(20ch, 30vw, 40ch), 1fr));
 `;
 
-const HomeProjectGridItem = styled.a`
+const HomeProjectGridItem = styled.a<{index:number}>`
   align-items: center;
   display: flex;
   margin-bottom: 5em;
+  opacity: 0;
   overflow: hidden;
   position: relative;
   text-decoration: none;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+  transition-delay: ${props => (props.index % 3) * 100}ms;
+  transform: translateY(100px);
 
   /* CSS Grid */
   margin-bottom: 0;
@@ -106,6 +110,11 @@ const HomeProjectGridItem = styled.a`
     video {
       opacity: 1;
     }
+  }
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   @media (max-width: 900px) {

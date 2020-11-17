@@ -20,7 +20,7 @@ export const blue = new Color('#74798D');
 export const darkBlue = blue.saturate(10).darken(30);
 
 export const aqua = new Color('#65b9c1');
-export const darkaqua = blue.saturate(10).darken(30);
+export const darkaqua = aqua.desaturate(20).spin(5).darken(40);
 // 323a3e
 // 65b9c1
 
@@ -37,10 +37,11 @@ export const white = new Color('#fff');
 export const offWhite = new Color('#f6f6f6');
 export const lightGray = new Color('#e5e5e5');
 export const gray = new Color('#a7a7a7');
-export const darkGray = new Color('#252525');
+export const darkGray = new Color('#333');
 export const black = new Color('#222');
 
-export const bgLight = new Color('#f5f4ff');
+// export const bgLight = new Color('#f5f4ff');
+export const bgLight = offWhite;
 export const bgDark = blue.darken(35);
 
 export const lightTheme = {
@@ -57,10 +58,13 @@ export const lightTheme = {
   lightGray,
   gray,
   darkGray,
-  black
+  black,
+  dark: darkGray,
+  light: offWhite
 }
 
 export const darkTheme = {
+  ...lightTheme,
   bg: bgDark,
   text: white,
   red: darkRed,
@@ -69,10 +73,6 @@ export const darkTheme = {
   green: darkGreen,
   tan: darkTan,
   salmon: darkSalmon,
-  white: black,
-  offWhite: darkGray,
-  lightGray: gray,
-  gray: lightGray,
-  darkGray: offWhite,
-  black: white
+  dark: offWhite,
+  light: darkGray
 }

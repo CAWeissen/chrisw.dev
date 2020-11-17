@@ -4,7 +4,6 @@ const StyledLogo = styled.div`
   align-items: center;
   display: flex;
   height: 100%;
-  min-height: 100px;
   width: 100%;
 
   a {

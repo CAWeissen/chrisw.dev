@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Logo from '../Logo/index';
-import { StyledHeader, StyledNavItem } from './styles';
+import { StyledHeader, StyledLogoContainer, StyledNavItem } from './styles';
 import { Link } from 'react-router-dom';
 import { Container } from '../Container/index';
 import Codepen from '../../assets/codepen.svg'
@@ -19,21 +19,23 @@ function Header({darkMode}:HeaderProps) {
   return (
     <StyledHeader>
       <Container>
-        <Logo />
-        <StyledNavItem>
-          <Link to="/about">About</Link>
-        </StyledNavItem>
+        <StyledLogoContainer>
+          <Logo />
+          <StyledNavItem>
+            <Link to="/about">About</Link>
+          </StyledNavItem>
+        </StyledLogoContainer>
         {/* <StyledNavItem>
           <Link to="/projects">Projects</Link>
         </StyledNavItem> */}
         {/* <StyledNavItem>
           <Link to="/styleguide">Styleguide</Link>
         </StyledNavItem> */}
-        <Button icon round tiny onClick={toggleDarkMode}>{darkMode.value ? '☀️' : '🌙'}</Button>
-        <a href="https://codepen.io/CAWeissen" target="_blank" rel="noopener noreferrer">
+        <Button icon round tiny onClick={toggleDarkMode}>{darkMode.value ? '🔆' : '🌙'}</Button>
+        <a href="https://codepen.io/CAWeissen" target="_blank" rel="noopener noreferrer nofollow">
           <Codepen/>
         </a>
-        <a href="https://www.instagram.com/caweissen/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/caweissen/" target="_blank" rel="noopener noreferrer nofollow">
           <Instagram/>
         </a>
       </Container>

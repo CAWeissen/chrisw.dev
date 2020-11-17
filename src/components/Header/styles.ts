@@ -4,11 +4,15 @@ import { StyledContainer } from '../Container/styles';
 const StyledHeader = styled.header`
   background-color: var(--bgColor);
   color: var(--textColor);
-  height: 100px;
+  height: 60px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 5;
+
+  @media screen and (min-width: 640px) {
+    height: 100px;
+  }
 
   a  {
     align-items: center;
@@ -29,8 +33,22 @@ const StyledHeader = styled.header`
 
   ${StyledContainer} {
     align-items: center;
+    color: var(--textColor);
     display: flex;
     height: 100%;
+  }
+`;
+
+const StyledLogoContainer = styled.div`
+  align-items: center;
+  display: flex;
+  transform: scale(0.7);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  width: 100%;
+
+  @media screen and (min-width: 640px) {
+    transform: scale(1);
   }
 `;
 
@@ -70,4 +88,4 @@ const StyledNavItem = styled.div`
   }
 `
 
-export { StyledHeader, StyledNavItem };
+export { StyledHeader, StyledLogoContainer, StyledNavItem };

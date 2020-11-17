@@ -1,10 +1,17 @@
 import * as React from 'react';
-import type Color from '../../utils/theme';
 import { StyledContainer, StyledFlexContainer, StyledSection } from './styles';
 
 interface ContainerProps {
   children: any | any[];
   thin?: boolean;
+  webGL?: boolean;
+};
+
+interface FlexContainerProps {
+  children: any | any[];
+  direction?: 'row'|'column';
+  thin?: boolean;
+  webGL?: boolean;
 };
 
 interface SectionProps {
@@ -12,18 +19,24 @@ interface SectionProps {
   color?: string;
 };
 
-function Container({thin = false, children}:ContainerProps) {
+function Container({thin = false, webGL = false, children}:ContainerProps) {
   return (
-    <StyledContainer thin={thin}>
+    <StyledContainer thin={thin} webGL={webGL}>
       {children}
     </StyledContainer>
   );
 }
 
 function FlexContainer(props:any) {
+  const {
+    children,
+    direction,
+    ...flexContainerProps
+  } = props;
+
   return (
-    <StyledFlexContainer dir={props.direction}>
-      {props.children}
+    <StyledFlexContainer dir={direction} {...flexContainerProps}>
+      {children}
     </StyledFlexContainer>
   );
 }

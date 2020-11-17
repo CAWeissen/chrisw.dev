@@ -1,16 +1,18 @@
 import * as React from 'react';
+import { InView } from 'react-intersection-observer';
+
 import { HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemMedia, HomeProjectGridItemInfo, StyledHome } from './styles';
-import Header from '../../components/Header/index';
+import { projectData } from '../../utils/constants';
 import { H1, H2, H3, P } from '../../utils/typography';
 import { Container, Section } from '../../components/Container';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
 import { StyledLink } from '../../components/Link/styles';
-import { blue } from '../../utils/theme';
 
 interface HomeProps {};
 
 function Home({}:HomeProps) {
+
   return (
     <StyledHome>
       <Section>
@@ -27,96 +29,22 @@ function Home({}:HomeProps) {
           </HomeIntro>
         </Container>
       </Section>
-      <Section color="green">
+      <Section color="aqua">
         <Container thin>
           <H2 style={{textAlign: 'center', marginBottom: '2em'}}>What I've Worked On:</H2>
           <HomeProjectGrid>
-            <HomeProjectGridItem href="https://www.pepsicares.com" target="_blank" rel="noopener noreferrer">
-              <HomeProjectGridItemMedia>
-                <img src="/assets/img/projects/pepsi-cares.jpg" alt="Pepsi Cares"></img>
-                <video src="/assets/video/pepsicares.webm" poster="/assets/img/projects/pepsi-cares.jpg" autoPlay muted loop></video>
-              </HomeProjectGridItemMedia>
-              <HomeProjectGridItemInfo>
-                <H3>Pepsi Cares</H3>
-                <P>February 2019</P>
-                <P>
-                  <strong>Silver Addy</strong> - Interface & Navigation<br/>
-                  <small>2019 Charlotte American Advertising Awards</small>
-                </P>
-                <P>
-                  <strong>Silver Addy</strong> - Consumer Website<br/>
-                  <small>2019 Charlotte American Advertising Awards</small>
-                </P>
-                <Button color={'darkGray'}>Visit Pepsi Cares</Button>
-              </HomeProjectGridItemInfo>
-            </HomeProjectGridItem>
-
-            <HomeProjectGridItem href="https://www.union.co" target="_blank" rel="noopener noreferrer">
-              <HomeProjectGridItemMedia>
-                <img src="/assets/img/projects/union.jpg" alt="Union"></img>
-                <video src="/assets/video/union.webm" poster="/assets/img/projects/union.jpg" autoPlay muted loop></video>
-              </HomeProjectGridItemMedia>
-              <HomeProjectGridItemInfo>
-                <H3>Union</H3>
-                <P>February 2019</P>
-                <P>
-                  <strong>Silver Addy</strong> - Advertising Industry Self-Promotion Online/Interactive<br/>
-                  <small>2019 Charlotte American Advertising Awards</small>
-                </P>
-              </HomeProjectGridItemInfo>
-            </HomeProjectGridItem>
-
-            <HomeProjectGridItem href="https://www.seagate.com" target="_blank" rel="noopener noreferrer">
-              <HomeProjectGridItemMedia>
-                <img src="/assets/img/projects/seagate.jpg" alt="Seagate"></img>
-                <video src="/assets/video/seagate.webm" poster="/assets/img/projects/seagate.jpg" autoPlay muted loop></video>
-              </HomeProjectGridItemMedia>
-              <HomeProjectGridItemInfo>
-                <H3>Seagate</H3>
-                <P>September 2020</P>
-              </HomeProjectGridItemInfo>
-            </HomeProjectGridItem>
-
-            <HomeProjectGridItem href="https://www.charlotteregion.com" target="_blank" rel="noopener noreferrer">
-              <HomeProjectGridItemMedia>
-                <img src="/assets/img/projects/crba.jpg" alt="Charlotte Regional Business Alliance"></img>
-                <video src="/assets/video/crba.webm" poster="/assets/img/projects/crba.jpg" autoPlay muted loop></video>
-              </HomeProjectGridItemMedia>
-              <HomeProjectGridItemInfo>
-                <H3>Charlotte Regional Business Alliance</H3>
-                <P>November 2019</P>
-              </HomeProjectGridItemInfo>
-            </HomeProjectGridItem>
-
-            <HomeProjectGridItem href="https://www.charlottesgotalot.com" target="_blank" rel="noopener noreferrer">
-              <HomeProjectGridItemMedia>
-                <img src="/assets/img/projects/charlottesgotalot-trails.jpg" alt="Charlotte's Got a Lot"></img>
-                <video src="/assets/video/crva-trails.webm" poster="/assets/img/projects/charlottesgotalot-trails.jpg" autoPlay muted loop></video>
-              </HomeProjectGridItemMedia>
-              <HomeProjectGridItemInfo>
-                <H3>Charlotte's Got A Lot</H3>
-              </HomeProjectGridItemInfo>
-            </HomeProjectGridItem>
-
-            {/* <HomeProjectGridItem href="https://www.nascarhall.com" target="_blank" rel="noopener noreferrer">
-              <HomeProjectGridItemMedia>
-                <img src="/assets/img/projects/nascar-hall.jpg" alt="Nascar Hall of Fame"></img>
-                <video src="/assets/video/nascar-hall.webm" poster="/assets/img/projects/nascar-hall.jpg" autoPlay muted loop></video>
-              </HomeProjectGridItemMedia>
-              <HomeProjectGridItemInfo>
-                <H3>Nascar Hall of Fame</H3>
-              </HomeProjectGridItemInfo>
-            </HomeProjectGridItem> */}
-
-            <HomeProjectGridItem href="https://www.channelpa.com" target="_blank" rel="noopener noreferrer">
-              <HomeProjectGridItemMedia>
-                <img src="/assets/img/projects/channelpa.jpg" alt="Channel Prime Alliance"></img>
-                <video src="/assets/video/channelpa.webm" poster="/assets/img/projects/channelpa.jpg" autoPlay muted loop></video>
-              </HomeProjectGridItemMedia>
-              <HomeProjectGridItemInfo>
-                <H3>Channel Prime Alliance</H3>
-              </HomeProjectGridItemInfo>
-            </HomeProjectGridItem>
+            {projectData.map(({name, date, url, image, video}, index) => (
+              <InView>
+                {({ inView, ref, entry }) => (
+                  <HomeProjectGridItem ref={ref} index={index} className={inView ? 'is-visible' : ''} href={url} target="_blank" rel="noopener noreferrer">
+                    <HomeProjectGridItemMedia>
+                      <img src={image} alt={name}></img>
+                      <video src={video} poster={image} autoPlay muted loop></video>
+                    </HomeProjectGridItemMedia>
+                  </HomeProjectGridItem>
+                )}
+              </InView>
+            ))}
           </HomeProjectGrid>
         </Container>
       </Section>
