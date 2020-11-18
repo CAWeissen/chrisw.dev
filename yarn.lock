@@ -6707,6 +6707,11 @@ proto-list@~1.2.1:
   resolved "https://registry.yarnpkg.com/proto-list/-/proto-list-1.2.4.tgz#212d5bfe1318306a420f6402b8e26ff39647a849"
   integrity sha1-IS1b/hMYMGpCD2QCuOJv85ZHqEk=
 
+proxy-compare@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/proxy-compare/-/proxy-compare-1.0.3.tgz#2055a09bc7cdca75087f3f103d447bdd80737edc"
+  integrity sha512-1xLvXh4d3C1pAN89Sn7QpJdFez/agTjLuPmQ9pdHULjnjTd8ewvx+2GEmekCr7hlYQJ9cKyk2ZuMSbqiwsbl6w==
+
 proxy-from-env@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
@@ -8439,6 +8444,13 @@ use-persisted-state@^0.3.0:
   dependencies:
     "@use-it/event-listener" "^0.1.2"
 
+use-subscription@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/use-subscription/-/use-subscription-1.5.1.tgz#73501107f02fad84c6dd57965beb0b75c68c42d1"
+  integrity sha512-Xv2a1P/yReAjAbhylMfFplFKj9GssgTwN7RlcTxBujFQcloStWNDQdc4g4NRWH9xS4i/FDk04vQBptAXoF3VcA==
+  dependencies:
+    object-assign "^4.1.1"
+
 use-tweaks@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/use-tweaks/-/use-tweaks-0.3.0.tgz#9f2540d87d6cfa4bf779dc5144ed137a3e3fe9a9"
@@ -8506,6 +8518,14 @@ validate-npm-package-name@^3.0.0:
   integrity sha1-X6kS2B630MdK/BQN5zF/DKffQ34=
   dependencies:
     builtins "^1.0.3"
+
+valtio@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/valtio/-/valtio-0.0.1.tgz#701b2e2e1ad3701d8fc5b36ab4dc720df51b9dbd"
+  integrity sha512-sIu6pZtAQxZyqAjw6DOvCVbOlE4QMf1sIvwk3KaXTppAbDK+s8bQ1asmlrmev/r+uf4aVtnLIKHC4TZTr0cOFg==
+  dependencies:
+    proxy-compare "1.0.3"
+    use-subscription "1.5.1"
 
 value-equal@^1.0.1:
   version "1.0.1"

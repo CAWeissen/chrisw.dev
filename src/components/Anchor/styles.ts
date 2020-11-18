@@ -1,43 +1,52 @@
 import styled from 'styled-components';
 
-const StyledAnchor = styled.a`
-cursor: pointer;
+const StyledAnchorArrow = styled.span`
+  border-bottom: 0.4em solid currentColor;
+  display: inline-block;
+  height: 0;
+  margin-left: 2em;
   position: relative;
-  text-decoration: none;
-
-  &::after,
-  &::before {
-    border-bottom: 1px solid currentColor;
-    content: '';
-    left: 0;
-    position: absolute;
-    transition: transform 0.4s ease;
-    transform: scaleX(0);
-    width: 100%;
-  }
+  transform: translateX(-1em);
+  transition: all 0.2s ease;
+  width: 2.5em;
 
   &::after {
-    bottom: 0;
-    transform-origin: right;
-  }
-
-  &::before {
-    content: none;
-    top: 0;
-    transform-origin: left;
-  }
-
-  &:hover {
-    &::after {
-      transform: scale(1);
-      transform-origin: left;
-    }
-
-    &::before {
-      transform: scale(1);
-      transform-origin: right;
-    }
+    border-right: 0.4em solid currentColor;
+    border-top: 0.4em solid currentColor;
+    content: '';
+    height: 1.5em;
+    right: 0.4em;
+    position: absolute;
+    top: 50%;
+    transform: rotate(45deg) translateY(-50%);
+    width: 1.5em;
   }
 `;
 
-export { StyledAnchor };
+const StyledAnchor = styled.a`
+  align-items: center;
+  color: var(--textColor);
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  text-decoration: none;
+
+  &:hover {
+    transform: none;
+
+    ${StyledAnchorArrow} {
+      transform: translateX(0);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+`;
+
+export { StyledAnchor, StyledAnchorArrow };

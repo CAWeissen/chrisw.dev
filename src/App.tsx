@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import create from 'zustand';
 import useDarkMode from 'use-dark-mode';
 
 import './App.css';
@@ -13,7 +12,9 @@ import Home from './pages/Home/index';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import { H1, H2, H3, H4, H5, H6, P } from './utils/typography';
 import { darkTheme, lightTheme } from './utils/theme';
+import { StyledButton } from './components/Button/styles';
 
 function App() {
   const darkMode = useDarkMode(true);
@@ -32,6 +33,34 @@ function App() {
 
     .tp-dfwv {
       top: 108px;
+    }
+
+    .reveal {
+      ${H1},
+      ${H2},
+      ${H3},
+      ${H4},
+      ${H5},
+      ${H6},
+      ${P},
+      ${StyledButton} {
+        opacity: 0;
+        transform: translateY(1em);
+      }
+    }
+
+    .is-visible {
+      ${H1},
+      ${H2},
+      ${H3},
+      ${H4},
+      ${H5},
+      ${H6},
+      ${P},
+      ${StyledButton} {
+        opacity: 1;
+        transform: none;
+      }
     }
   `;
 

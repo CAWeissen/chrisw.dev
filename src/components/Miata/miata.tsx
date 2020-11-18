@@ -129,18 +129,6 @@ export default function MiataModel(props: JSX.IntrinsicElements['group'] & Miata
     if (grid.current) {
       // grid.current.position.z = (delta);
     }
-
-    if (headlightLeft.current
-     && headlightRight.current
-     && headlightLeftTarget.current
-     && headlightRightTarget.current) {
-      //  @ts-ignore
-      headlightLeft.current.target = headlightLeftTarget.current;
-      headlightLeft.current.updateMatrixWorld();
-      //  @ts-ignore
-      headlightRight.current.target = headlightLeftTarget.current;
-      headlightRight.current.updateMatrixWorld();
-    }
   })
 
   useEffect(() => {
@@ -164,6 +152,18 @@ export default function MiataModel(props: JSX.IntrinsicElements['group'] & Miata
       playAnimation('closeLights');
       setLights(false);
     });
+
+    if (headlightLeft.current
+      && headlightRight.current
+      && headlightLeftTarget.current
+      && headlightRightTarget.current) {
+       //  @ts-ignore
+       headlightLeft.current.target = headlightLeftTarget.current;
+       headlightLeft.current.updateMatrixWorld();
+       //  @ts-ignore
+       headlightRight.current.target = headlightLeftTarget.current;
+       headlightRight.current.updateMatrixWorld();
+     }
 
     // return () => animations.forEach((clip) => mixer.uncacheClip(clip))
   }, [])

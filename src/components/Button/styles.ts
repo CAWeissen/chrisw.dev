@@ -26,7 +26,7 @@ const StyledButton = styled.button<ButtonProps>`
   padding: ${props => props.tiny ? '0.5em 0.75em' : '1em 1.5em'};
   position: relative;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease, opacity 0.8s ease, transform 0.8s ease;
   white-space: nowrap;
   ${props => props.size && `
     height: ${props.size * 2}rem;

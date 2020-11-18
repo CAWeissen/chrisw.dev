@@ -20,12 +20,12 @@ function Miata({darkMode, anim}: MiataProps) {
   let bgColor:string = darkMode.value ? bgDark.toHexString() : bgLight.toHexString();
   let mounted:boolean = false;
 
-  // React.useEffect(() => {
-  //   if (!mounted) {
-  //     mounted = true;
-  //     anim = darkMode.value ? 'close' : 'open';
-  //   }
-  // }, [mounted])
+  React.useEffect(() => {
+    if (!mounted) {
+      mounted = true;
+      anim = darkMode.value ? 'close' : 'open';
+    }
+  }, [mounted])
 
   function MiataGroup(props:any) {
     const {children, ...groupProps} = props;

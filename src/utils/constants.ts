@@ -23,7 +23,7 @@ export const projectData = [
     video: '/assets/video/seagate.webm'
   },
   {
-    name: 'Charlotte Regional Business Alliance',
+    name: 'CRBA',
     date: 'October 2019',
     url: 'https://www.charlotteregion.com',
     image: '/assets/img/projects/crba.jpg',
@@ -32,7 +32,7 @@ export const projectData = [
   {
     name: 'Charlotte\'s Got a Lot',
     date: 'February 2019',
-    url: 'https://www.charlottesgotalot.com.com',
+    url: 'https://www.charlottesgotalot.com/trails',
     image: '/assets/img/projects/charlottesgotalot-trails.jpg',
     video: '/assets/video/crva-trails.webm'
   },

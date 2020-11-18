@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { H3 } from '../../utils/typography';
+import { StyledAnchor } from '../Anchor/styles';
 import { StyledContainer, StyledSection } from '../Container/styles';
 
 const StyledFooter = styled.footer`
@@ -7,25 +9,17 @@ const StyledFooter = styled.footer`
   width: 100%;
   z-index: 5;
 
-  a  {
-    align-items: center;
-    color: var(--textColor);
-    display: flex;
-
-    &:not(:first-child) {
-      svg {
-        margin-left: 1em;
-        width: 32px;
-      }
-    }
-  }
-
   img,
   svg {
     bottom: 0;
-    max-width: 200px;
+    max-width: 25vw;
     position: absolute;
     left: 5vw;
+    width: 256px;
+  }
+
+  ${StyledAnchor} ${H3} {
+    margin: 0;
   }
 
   ${StyledContainer} {

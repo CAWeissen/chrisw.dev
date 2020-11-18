@@ -7,7 +7,7 @@ import Gallery from 'react-photo-gallery';
 import { StyledAbout, StyledAboutIntro } from './styles';
 import { photos } from '../../utils/constants';
 import { bgDark, bgLight } from '../../utils/theme';
-import { H1, H2, H3, H4 } from '../../utils/typography';
+import { H1, H2, H3, H4, H5, H6 } from '../../utils/typography';
 import { Container, FlexContainer, Section } from '../../components/Container';
 import Miata from '../../components/Miata/miata';
 import Anchor from '../../components/Anchor';
@@ -69,7 +69,7 @@ function About({darkMode}: AboutProps) {
         </FlexContainer>
         <Canvas style={{minHeight: 'calc(100vh - 100px)', position: 'absolute', left: 0, top: 0, width: '100vw', zIndex: 0}}>
           <PerspectiveCamera makeDefault fov={45} position={[0, 0, 4]} rotation={[0, 0, 0]} />
-          <OrbitControls enableZoom={false} position={[0, 0.5, 4]} />
+          <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} position={[0, 0.5, 4]} />
           <fog attach="fog" args={[bgColor, 5, 15]} />
 
           <MiataGroup position={[1, -0.5, 1]} rotation={[0, -Math.PI / 4, 0]}>
@@ -93,13 +93,16 @@ function About({darkMode}: AboutProps) {
           </MiataGroup>
         </Canvas>
       </Section>
-      <Section color='light'>
+      {/* @ts-ignore */}
+      <Section className='About-gallery' color='light'>
         <Container>
-          <H2>I take photos too</H2>
+          <H3>I take photos sometimes</H3>
           <Gallery photos={photos} />
         </Container>
         <FlexContainer justifyCenter>
-          <H3><Anchor href="https://www.instagram.com/caweissen" target="_blank" rel="noopener noreferrer">Find more on Instagram</Anchor></H3>
+          <Anchor href="https://www.instagram.com/caweissen" target="_blank" rel="noopener noreferrer">
+            <H6>Find more on Instagram</H6>
+          </Anchor>
         </FlexContainer>
       </Section>
     </StyledAbout>

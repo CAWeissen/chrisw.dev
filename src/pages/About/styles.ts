@@ -13,6 +13,12 @@ const StyledAbout = styled.section`
   ${StyledSection} {
     min-height: calc(100vh - 100px);
   }
+
+  .About-gallery {
+    .react-photo-gallery--gallery {
+      margin-bottom: 5em;
+    }
+  }
 `;
 
 const StyledAboutIntro = styled.div`

@@ -1,7 +1,7 @@
 import { StyledSection } from '../../components/Container/styles';
 import styled from 'styled-components';
 import { StyledImage } from '../../components/Image/styles';
-import { H3, P } from '../../utils/typography';
+import { H3, H6, P } from '../../utils/typography';
 
 const StyledHome = styled.section`
   display: grid;
@@ -17,22 +17,12 @@ const HomeIntro = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @keyframes revealRight {
-    from {
-      transform: scaleX(0);
-    }
-    to {
-      transform: scaleX(100%)
-    }
-  }
-
   ${StyledImage} {
     margin-right: 8vmin;
     padding: 2vw 8vw 0 10vw;
     width: 100%;
 
     &::after {
-      animation: revealRight 0.75s cubic-bezier(.39,.03,.08,1.09) forwards;
       background: ${props => props.theme.salmon};
       bottom: 0;
       content: '';
@@ -42,7 +32,14 @@ const HomeIntro = styled.div`
       width: 100%;
       transform: scaleX(0);
       transform-origin: left;
+      transition: transform 0.75s cubic-bezier(.39,.03,.08,1.09);
       z-index: 0;
+    }
+  }
+
+  &.is-visible {
+    ${StyledImage}::after {
+      transform: scale(1);
     }
   }
 
@@ -81,65 +78,11 @@ const HomeProjectGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(clamp(20ch, 30vw, 40ch), 1fr));
 `;
 
-const HomeProjectGridItem = styled.a<{index:number}>`
-  align-items: center;
-  display: flex;
-  margin-bottom: 5em;
-  opacity: 0;
-  overflow: hidden;
-  position: relative;
-  text-decoration: none;
-  transition: opacity 0.3s ease, transform 0.4s ease;
-  transition-delay: ${props => (props.index % 3) * 100}ms;
-  transform: translateY(100px);
-
-  /* CSS Grid */
-  margin-bottom: 0;
-
-  ${H3} {
-    color: var(--textColor);
-    font-weight: 600;
-    margin: 0;
-  }
-
-  ${P} {
-    color: var(--textColor);
-  }
-
-  &:hover {
-    video {
-      opacity: 1;
-    }
-  }
-
-  &.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (max-width: 900px) {
-    flex-direction: column-reverse;
-  }
-`;
-
-const HomeProjectGridItemInfo = styled.div`
-  align-items: flex-start;
-  display: flex;
-  display: none;
-  flex-direction: column;
-  height: 100%;
-  width: 40%;
-
-  @media (max-width: 900px) {
-    margin-bottom: 2em;
-    width: 100%;
-  }
-`;
-
 const HomeProjectGridItemMedia = styled.div`
   position: relative;
   margin-right: 3em;
   max-width: 720px;
+  transition: all 0.3s ease;
   width: 60%;
 
   /* CSS Grid */
@@ -173,6 +116,72 @@ const HomeProjectGridItemMedia = styled.div`
   @media (max-width: 900px) {
     margin-right: 0;
     width:100%;
+  }
+`;
+
+const HomeProjectGridItem = styled.a<{index:number}>`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5em;
+  opacity: 0;
+  position: relative;
+  text-decoration: none;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+  transition-delay: ${props => (props.index % 3) * 100}ms;
+  transform: translateY(100px);
+
+  /* CSS Grid */
+  margin-bottom: 0;
+
+  ${H3} {
+    color: var(--textColor);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  ${P} {
+    color: var(--textColor);
+  }
+
+  &:hover {
+    video {
+      opacity: 1;
+    }
+  }
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (min-width: 900px) {
+    flex-direction: column-reverse;
+
+    &:hover {
+      ${HomeProjectGridItemMedia} {
+        transform: translateY(clamp(-3em, -4vw, -5em));
+      }
+    }
+  }
+`;
+
+const HomeProjectGridItemInfo = styled.div`
+  bottom: 0;
+  left: 50%;
+  margin-bottom: 1.5em;
+  text-align: center;
+  width: 100%;
+
+  ${H6} {
+    color: var(--textColor);
+    margin: 0;
+  }
+
+  @media (min-width: 900px) {
+    margin-bottom: 0;
+    position: absolute;
+    transform: translateX(-50%);
   }
 `;
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledAnchor } from './styles';
+import { StyledAnchor, StyledAnchorArrow } from './styles';
 
 function Anchor(props:any, {}) {
   const{
@@ -9,6 +9,7 @@ function Anchor(props:any, {}) {
   return (
     <StyledAnchor {...anchorProps}>
       {props.children}
+      <StyledAnchorArrow />
     </StyledAnchor>
   )
 }

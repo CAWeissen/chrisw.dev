@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Logo from '../Logo/index';
-import { StyledHeader, StyledLogoContainer, StyledNavItem } from './styles';
+import { StyledHeader, StyledHeaderActions, StyledHeaderActionsButtons, StyledLogoContainer, StyledMobileTrigger, StyledNavItem } from './styles';
 import { Link } from 'react-router-dom';
 import { Container } from '../Container/index';
 import Codepen from '../../assets/codepen.svg'
@@ -12,8 +12,13 @@ interface HeaderProps {
 };
 
 function Header({darkMode}:HeaderProps) {
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const toggleDarkMode = () => {
     darkMode.toggle();
+  }
+
+  const toggleMenu = () => {
+    setMenuOpen(menuOpen ? false : true);
   }
 
   return (
@@ -21,9 +26,9 @@ function Header({darkMode}:HeaderProps) {
       <Container>
         <StyledLogoContainer>
           <Logo />
-          <StyledNavItem>
-            <Link to="/about">About</Link>
-          </StyledNavItem>
+          <Button icon round tiny className='Header-mobile-trigger' onClick={toggleMenu}>
+            <StyledMobileTrigger />
+          </Button>
         </StyledLogoContainer>
         {/* <StyledNavItem>
           <Link to="/projects">Projects</Link>
@@ -31,13 +36,26 @@ function Header({darkMode}:HeaderProps) {
         {/* <StyledNavItem>
           <Link to="/styleguide">Styleguide</Link>
         </StyledNavItem> */}
-        <Button icon round tiny onClick={toggleDarkMode}>{darkMode.value ? '🔆' : '🌙'}</Button>
-        <a href="https://codepen.io/CAWeissen" target="_blank" rel="noopener noreferrer nofollow">
-          <Codepen/>
-        </a>
-        <a href="https://www.instagram.com/caweissen/" target="_blank" rel="noopener noreferrer nofollow">
-          <Instagram/>
-        </a>
+        <StyledHeaderActions className={menuOpen ? 'is-open' : ''}>
+          <StyledNavItem onClick={() => setMenuOpen(false)}>
+            <Link to="/">Home</Link>
+          </StyledNavItem>
+          <StyledNavItem onClick={() => setMenuOpen(false)}>
+            <Link to="/about">About</Link>
+          </StyledNavItem>
+          <StyledHeaderActionsButtons>
+            <Button icon round tiny onClick={toggleDarkMode}>{darkMode.value ? '🔆' : '🌙'}</Button>
+            <a href="https://codepen.io/CAWeissen" target="_blank" rel="noopener noreferrer nofollow">
+              <Codepen/>
+            </a>
+            <a href="https://www.instagram.com/caweissen/" target="_blank" rel="noopener noreferrer nofollow">
+              <Instagram/>
+            </a>
+          </StyledHeaderActionsButtons>
+          <Button icon round tiny className='Header-mobile-trigger' onClick={toggleMenu}>
+            <StyledMobileTrigger />
+          </Button>
+        </StyledHeaderActions>
       </Container>
     </StyledHeader>
   );
