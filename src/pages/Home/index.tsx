@@ -25,7 +25,7 @@ function Home({}:HomeProps) {
                   <H1>Hey, I'm Chris!</H1>
                   <P light>I'm a full stack engineer (with a love for front end) working on high-quality, interactive, award-winning web experiences and products.</P>
                   <StyledLink to='/about'>
-                    <Button>Who is this guy?</Button>
+                    <Button round>Who is this guy?</Button>
                   </StyledLink>
                 </HomeIntroText>
               </HomeIntro>
@@ -42,7 +42,7 @@ function Home({}:HomeProps) {
           </InView>
           <HomeProjectGrid>
             {projectData.map(({name, date, url, image, video}, index) => (
-              <InView>
+              <InView key={index}>
                 {({ inView, ref }) => (
                   <HomeProjectGridItem ref={ref} index={index} className={inView ? 'is-visible' : 'will-reveal'} href={url} target="_blank" rel="noopener noreferrer">
                     <HomeProjectGridItemInfo>
@@ -63,7 +63,7 @@ function Home({}:HomeProps) {
         <Container>
           <H5>Skills</H5>
           <SkillsList>
-            {skills.map((skill:string) => <Skill>{skill}</Skill>)}
+            {skills.map((skill:string, index:number) => <Skill key={index}>{skill}</Skill>)}
           </SkillsList>
         </Container>
       </Section>

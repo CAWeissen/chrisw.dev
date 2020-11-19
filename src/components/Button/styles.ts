@@ -16,7 +16,7 @@ const StyledButton = styled.button<ButtonProps>`
   align-items: center;
   background-color: var(--bgColor);
   border: 3px solid transparent;
-  border-radius: ${props => props.round ? '50%' : '0.25em'};
+  border-radius: ${props => props.round ? '3em' : '0.25em'};
   color: var(--textColor);
   cursor: pointer;
   display: flex;

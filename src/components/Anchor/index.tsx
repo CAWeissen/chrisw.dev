@@ -9,7 +9,7 @@ function Anchor(props:any, {}) {
   return (
     <StyledAnchor {...anchorProps}>
       {props.children}
-      <StyledAnchorArrow />
+      {/* <StyledAnchorArrow /> */}
     </StyledAnchor>
   )
 }
