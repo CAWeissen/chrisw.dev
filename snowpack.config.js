@@ -7,7 +7,8 @@ module.exports = {
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-typescript',
-    ['snowpack-plugin-svgr', { /* options */ }]
+    ['snowpack-plugin-svgr', { /* options */ }],
+    ["@snowpack/plugin-webpack"]
   ],
   install: [
     /* ... */

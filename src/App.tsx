@@ -3,8 +3,6 @@ import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import useDarkMode from 'use-dark-mode';
 
-import './App.css';
-
 import About from './pages/About/index';
 import Home from './pages/Home/index';
 // import Projects from './pages/Projects/index';
