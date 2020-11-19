@@ -21,7 +21,7 @@ interface AboutProps {
 
 const openEvent = new CustomEvent('open');
 const closeEvent = new CustomEvent('close');
-let anim:'open' | 'close' = 'open';
+let anim:'open' | 'close';
 
 const toggleLights = () => {
   window.dispatchEvent(anim === 'open' ? openEvent : closeEvent);
@@ -46,7 +46,7 @@ function About({darkMode}: AboutProps) {
 
   function MiataGroup(props:any) {
     const {children, ...groupProps} = props;
-    useFrame((state, delta) => {
+    useFrame(() => {
       const time = performance.now() / 200;
 
       if (grid.current) {

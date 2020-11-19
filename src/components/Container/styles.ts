@@ -22,6 +22,7 @@ type FlexContainerProps = {
 
 type SectionProps = {
   bg?: string;
+  doubled?: boolean;
   full?: boolean;
 }
 
@@ -72,8 +73,11 @@ const StyledSection = styled.section<SectionProps>`
   --textColor: ${props => tinycolor.mostReadable((props.bg ? props.theme[props.bg] : props.theme.bg), [white, darkGray]).toHexString()};
   background-color: ${props => props.bg ? props.theme[props.bg].toHexString() : props.theme.bg};
   color: var(--textColor);
+  display: flex;
+  flex-direction: column;
   ${props => props.full && 'height: 100vh;'}
   padding: 10vmin 0;
+  ${props => props.doubled && 'padding-top: 0;'};
   position: relative;
   transition: all 0.5s ease;
   width: 100%;

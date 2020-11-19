@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Logo from '../Logo/index';
-import { StyledHeader, StyledHeaderActions, StyledHeaderActionsButtons, StyledLogoContainer, StyledMobileTrigger, StyledNavItem } from './styles';
+import { DarkModeIcon, StyledHeader, StyledHeaderActions, StyledHeaderActionsButtons, StyledLogoContainer, StyledMobileTrigger, StyledNavItem } from './styles';
 import { Link } from 'react-router-dom';
 import { Container } from '../Container/index';
 import Codepen from '../../assets/codepen.svg'
+import LinkedIn from '../../assets/linkedin.svg'
 import Instagram from '../../assets/instagram.svg'
 import Button from '../Button';
 
@@ -44,12 +45,17 @@ function Header({darkMode}:HeaderProps) {
             <Link to="/about">About</Link>
           </StyledNavItem>
           <StyledHeaderActionsButtons>
-            <Button icon round tiny onClick={toggleDarkMode}>{darkMode.value ? '🔆' : '🌙'}</Button>
+            <Button icon round tiny onClick={toggleDarkMode}>
+              <DarkModeIcon darkMode={darkMode.value} />
+            </Button>
             <a href="https://codepen.io/CAWeissen" target="_blank" rel="noopener noreferrer nofollow">
               <Codepen/>
             </a>
             <a href="https://www.instagram.com/caweissen/" target="_blank" rel="noopener noreferrer nofollow">
               <Instagram/>
+            </a>
+            <a href="https://www.linkedin.com/in/caweissen/" target="_blank" rel="noopener noreferrer nofollow">
+              <LinkedIn/>
             </a>
           </StyledHeaderActionsButtons>
           <Button icon round tiny className='Header-mobile-trigger' onClick={toggleMenu}>

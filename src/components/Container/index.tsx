@@ -12,11 +12,20 @@ interface FlexContainerProps {
   direction?: 'row'|'column';
   thin?: boolean;
   webGL?: boolean;
+  alignCenter?: boolean;
+  alignStart?: boolean;
+  alignEnd?: boolean;
+  justifyAround?: boolean;
+  justifyBetween?: boolean;
+  justifyCenter?: boolean;
+  justifyStart?: boolean;
+  justifyEnd?: boolean;
 };
 
 interface SectionProps {
   children: any[] | any;
   color?: string;
+  doubled?: boolean;
 };
 
 function Container({thin = false, webGL = false, children}:ContainerProps) {
@@ -27,10 +36,10 @@ function Container({thin = false, webGL = false, children}:ContainerProps) {
   );
 }
 
-function FlexContainer(props:any) {
+function FlexContainer(props:FlexContainerProps) {
   const {
     children,
-    direction,
+    direction = 'row',
     ...flexContainerProps
   } = props;
 

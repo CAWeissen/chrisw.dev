@@ -19,7 +19,8 @@ export const darkRed = red.desaturate(20).darken(35);
 export const blue = new Color('#74798D');
 export const darkBlue = blue.saturate(10).darken(30);
 
-export const aqua = new Color('#65b9c1');
+// export const aqua = new Color('#65b9c1');
+export const aqua = new Color('#7BCFD5');
 export const darkaqua = aqua.desaturate(20).spin(5).darken(40);
 // 323a3e
 // 65b9c1

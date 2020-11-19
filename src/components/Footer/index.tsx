@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyledFooter } from './styles';
-import { H5 } from '../../utils/typography';
+import { H6 } from '../../utils/typography';
 import { FlexContainer, Section } from '../Container/index';
 import Anchor from '../Anchor';
 
@@ -12,7 +12,7 @@ function Footer({}:FooterProps) {
       <Section color={'black'}>
         <FlexContainer direction="column" alignEnd>
           <Anchor onClick={() => window.location.href = 'mailto:caweissen@gmail.com'}>
-            <H5>Let's talk!</H5>
+            <H6>Let's talk!</H6>
           </Anchor>
         </FlexContainer>
         <img src="/assets/img/polyhead.png" alt="Polygon version of Chris Weissenberger's head" />

@@ -1,4 +1,4 @@
-import { StyledSection } from '../../components/Container/styles';
+import { StyledFlexContainer, StyledSection } from '../../components/Container/styles';
 import styled from 'styled-components';
 import { H1 } from '../../utils/typography';
 
@@ -12,6 +12,16 @@ const StyledAbout = styled.section`
 
   ${StyledSection} {
     min-height: calc(100vh - 100px);
+
+    @media screen and (max-width: 719px) {
+      &:first-child ${StyledFlexContainer} {
+        min-height: 100%;
+      }
+    }
+  }
+
+  ${StyledFlexContainer}  {
+    /* min-height: 100%; */
   }
 
   .About-gallery {

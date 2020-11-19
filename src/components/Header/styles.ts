@@ -155,7 +155,7 @@ const StyledMobileTrigger = styled.div`
     position: absolute;
     top: 50%;
     transition: transform 0.2s ease;
-    width: 1.5em;
+    width: 1.25em;
   }
 
   &::after {
@@ -211,4 +211,50 @@ const StyledLogoContainer = styled.div`
   }
 `;
 
-export { StyledHeader, StyledHeaderActions, StyledHeaderActionsButtons, StyledLogoContainer, StyledMobileTrigger, StyledNavItem };
+const DarkModeIcon = styled.div<{darkMode:boolean}>`
+  background-color: currentColor;
+  border-radius: 50%;
+  color: #ffcb00;
+  display: block;
+  height: 14px;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.8s ease;
+  width: 14px;
+
+  &::after {
+    background-color: var(--bgColor);
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 20px;
+    left: -6px;
+    position: absolute;
+    top: -2px;
+    transition: all 0.2s ease;
+    width: 20px;
+
+    ${props => props.darkMode && `
+      transform: translateX(-6px) scale(0);
+    `}
+  }
+
+  ${props => props.darkMode ? `
+      box-shadow:
+      8px 8px 0 -5px currentColor,
+      12px 0 0 -5px currentColor,
+      8px -8px 0 -5px currentColor,
+      0px -12px 0 -5px currentColor,
+      -8px -8px 0 -5px currentColor,
+      -12px 0px 0 -5px currentColor,
+      -8px 8px 0 -5px currentColor,
+      0px 12px 0 -5px currentColor;
+    ` : `
+      color: #ffa700;
+      height: 20px;
+      width: 20px;
+    `
+  }
+`;
+
+export { DarkModeIcon, StyledHeader, StyledHeaderActions, StyledHeaderActionsButtons, StyledLogoContainer, StyledMobileTrigger, StyledNavItem };

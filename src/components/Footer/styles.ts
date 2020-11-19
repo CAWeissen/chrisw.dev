@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import { H3 } from '../../utils/typography';
-import { StyledAnchor } from '../Anchor/styles';
-import { StyledContainer, StyledSection } from '../Container/styles';
+import { StyledContainer } from '../Container/styles';
 
 const StyledFooter = styled.footer`
   background-color: var(--bgColor);
@@ -12,14 +10,12 @@ const StyledFooter = styled.footer`
   img,
   svg {
     bottom: 0;
-    max-width: 25vw;
+    max-height: 200px;
+    max-width: 15vmax;
+    object-fit: contain;
     position: absolute;
     left: 5vw;
     width: 256px;
-  }
-
-  ${StyledAnchor} ${H3} {
-    margin: 0;
   }
 
   ${StyledContainer} {

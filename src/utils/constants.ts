@@ -9,13 +9,6 @@ export const projectData = [
     video: '/assets/video/pepsicares.webm'
   },
   {
-    name: 'Union',
-    date: 'February 2019',
-    url: 'https://www.union.co',
-    image: '/assets/img/projects/union.jpg',
-    video: '/assets/video/union.webm'
-  },
-  {
     name: 'Seagate',
     date: 'August 2020',
     url: 'https://www.seagate.com',
@@ -23,11 +16,11 @@ export const projectData = [
     video: '/assets/video/seagate.webm'
   },
   {
-    name: 'CRBA',
-    date: 'October 2019',
-    url: 'https://www.charlotteregion.com',
-    image: '/assets/img/projects/crba.jpg',
-    video: '/assets/video/crba.webm'
+    name: 'Union',
+    date: 'February 2019',
+    url: 'https://www.union.co',
+    image: '/assets/img/projects/union.jpg',
+    video: '/assets/video/union.webm'
   },
   {
     name: 'Charlotte\'s Got a Lot',
@@ -37,12 +30,43 @@ export const projectData = [
     video: '/assets/video/crva-trails.webm'
   },
   {
+    name: 'CRBA',
+    date: 'October 2019',
+    url: 'https://www.charlotteregion.com',
+    image: '/assets/img/projects/crba.jpg',
+    video: '/assets/video/crba.webm'
+  },
+  {
     name: 'Channel Prime Alliance',
     date: 'February 2020',
     url: 'https://www.channelpa.com',
     image: '/assets/img/projects/channelpa.jpg',
     video: '/assets/video/channelpa.webm'
   },
+]
+
+export const skills = [
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'TypeScript',
+  'PHP',
+  'Node.js',
+  'React',
+  'Vue',
+  'Angular',
+  'React Native',
+  'three.js',
+  'Augmented Reality',
+  'Virtual Reality',
+  'Game Development',
+  '3D Modeling',
+  'Photoshop',
+  'Illustrator',
+  'Photography',
+  'Videography',
+  'Photo/Video Editing',
+  'Spanish'
 ]
 
 export const photos = [

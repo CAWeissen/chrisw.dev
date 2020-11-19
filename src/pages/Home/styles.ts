@@ -185,5 +185,49 @@ const HomeProjectGridItemInfo = styled.div`
   }
 `;
 
+const SkillsList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  width: 100%;
+`;
 
-export { StyledHome, HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemInfo, HomeProjectGridItemMedia };
+const Skill = styled.li`
+  font-style: italic;
+  line-height: 2;
+  list-style-type: none;
+  margin-right: 2em;
+  position: relative;
+
+  &:last-child::after {
+    content: none;
+  }
+
+  &::after {
+    background-color: currentColor;
+    border-radius: 50%;
+    content: '';
+    display: inline-block;
+    height: 0.25em;
+    left: calc(100% + 0.75em);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.25em;
+  }
+`;
+
+const JobGroup = styled.div`
+  border-bottom: 1px solid var(--dark);
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+  width: 100%;
+
+  ${P} {
+    width: 50%;
+  }
+`;
+
+
+export { StyledHome, HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemInfo, HomeProjectGridItemMedia, SkillsList, Skill, JobGroup };

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { InView } from 'react-intersection-observer';
 
-import { HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemMedia, HomeProjectGridItemInfo, StyledHome } from './styles';
-import { projectData } from '../../utils/constants';
-import { H1, H2, H3, H6, P } from '../../utils/typography';
+import { HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemMedia, HomeProjectGridItemInfo, StyledHome, SkillsList, Skill, JobGroup} from './styles';
+import { projectData, skills } from '../../utils/constants';
+import { H1, H2, H5, H6, P } from '../../utils/typography';
 import { Container, Section } from '../../components/Container';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
@@ -23,7 +23,7 @@ function Home({}:HomeProps) {
                 <Image src="/assets/img/chris.png" alt="Chris Weissenberger"/>
                 <HomeIntroText>
                   <H1>Hey, I'm Chris!</H1>
-                  <P>I'm a full stack engineer (with a love for front end) working on high-quality, interactive, award-winning web experiences and products.</P>
+                  <P light>I'm a full stack engineer (with a love for front end) working on high-quality, interactive, award-winning web experiences and products.</P>
                   <StyledLink to='/about'>
                     <Button>Who is this guy?</Button>
                   </StyledLink>
@@ -57,6 +57,24 @@ function Home({}:HomeProps) {
               </InView>
             ))}
           </HomeProjectGrid>
+        </Container>
+      </Section>
+      <Section>
+        <Container>
+          <H5>Skills</H5>
+          <SkillsList>
+            {skills.map((skill:string) => <Skill>{skill}</Skill>)}
+          </SkillsList>
+        </Container>
+      </Section>
+      <Section doubled>
+        <Container>
+          <H5>Experience</H5>
+          <JobGroup>
+            <P>2017 – Present</P><P light>Union<br/><small>Charlotte, NC</small></P>
+            <P>2015 – 2017</P><P light>South America Mission<br/><small>Santa Cruz de la Sierra, Bolivia</small></P>
+            <P>2012 – 2015</P><P light>Modus Create<br/><small>Reston, VA</small></P>
+          </JobGroup>
         </Container>
       </Section>
     </StyledHome>

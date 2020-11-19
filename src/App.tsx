@@ -15,6 +15,7 @@ import ScrollToTop from './components/ScrollToTop';
 import { H1, H2, H3, H4, H5, H6, P } from './utils/typography';
 import { darkTheme, lightTheme } from './utils/theme';
 import { StyledButton } from './components/Button/styles';
+import FourOhFour from './pages/FourOhFour';
 
 function App() {
   const darkMode = useDarkMode(true);
@@ -29,7 +30,7 @@ function App() {
     background-color: var(--bgColor);
     font-family: var(--fontSans);
     min-height: 100vh;
-    padding-top: 100px;
+    padding-top: 60px;
 
     .tp-dfwv {
       top: 108px;
@@ -62,6 +63,10 @@ function App() {
         transform: none;
       }
     }
+
+    @media screen and (min-width: 720px) {
+      padding-top: 100px;
+    }
   `;
 
   return (
@@ -83,6 +88,9 @@ function App() {
             <Route exact path="/styleguide">
               <StyleguidePage />
             </Route> */}
+            <Route path="*">
+              <FourOhFour />
+            </Route>
           </Switch>
           <Footer />
         </BrowserRouter>
