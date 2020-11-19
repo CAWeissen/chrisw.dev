@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import useDarkMode from 'use-dark-mode';
 
 import About from './pages/About/index';
@@ -70,7 +70,7 @@ function App() {
   return (
     <StyledApp>
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
+        <HashRouter>
           <ScrollToTop />
           <Header darkMode={darkMode} />
           <Switch>
@@ -91,7 +91,7 @@ function App() {
             </Route>
           </Switch>
           <Footer />
-        </BrowserRouter>
+        </HashRouter>
       </ThemeProvider>
     </StyledApp>
   );
