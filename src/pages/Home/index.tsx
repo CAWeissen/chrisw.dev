@@ -67,7 +67,7 @@ function Home({}:HomeProps) {
           </SkillsList>
         </Container>
       </Section>
-      <Section doubled>
+      {/* <Section doubled>
         <Container>
           <H5>Experience</H5>
           <JobGroup>
@@ -76,7 +76,7 @@ function Home({}:HomeProps) {
             <P>2012 – 2015</P><P light>Modus Create<br/><small>Reston, VA</small></P>
           </JobGroup>
         </Container>
-      </Section>
+      </Section> */}
     </StyledHome>
   );
 }
