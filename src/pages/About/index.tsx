@@ -1,19 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 import type * as THREE from 'three';
 import { Canvas, useFrame } from 'react-three-fiber';
 import { OrbitControls, PerspectiveCamera, Plane, Shadow } from '@react-three/drei';
 import Gallery from 'react-photo-gallery';
 
-import { StyledAbout, StyledAboutIntro } from './styles';
-import { photos } from '../../utils/constants';
+import { StyledAbout, StyledAboutBio, StyledAboutBioCopy, StyledAboutIntro } from './styles';
+import { gallery } from '../../utils/constants';
 import { bgDark, bgLight } from '../../utils/theme';
-import { H1, H2, H3, H4, H5, H6 } from '../../utils/typography';
+import { H1, H2, H3, H4, H5, H6, P } from '../../utils/typography';
 import { Container, FlexContainer, Section } from '../../components/Container';
 import Miata from '../../components/Miata/miata';
 import Anchor from '../../components/Anchor';
 import Button from '../../components/Button';
+import Image from '../../components/Image';
 //  @ts-ignore
-import ToggleLights from '../../assets/toggle-lights';
+import ToggleLights from '../../assets/toggle-lights.svg';
 
 interface AboutProps {
   darkMode: any;
@@ -93,15 +94,28 @@ function About({darkMode}: AboutProps) {
           </MiataGroup>
         </Canvas>
       </Section>
+      <Section color="green">
+        <Container>
+          <H3>From games to websites</H3>
+          <StyledAboutBio>
+            <Image src="/assets/img/geysers.jpg" alt="Chris Weissenberger"/>
+            <StyledAboutBioCopy>
+              <P>Went to university to become a game developer, and I came out a web developer.</P>
+              <P>My curiosity and creativity have always shaped me, and pour into the rest of my life through photography, volunteerism, travel...</P>
+              <P>...and a tendency to take on bigger projects than my wife thinks I should. <small>(Let's just say I won't be changing my car's suspension again anytime soon.)</small></P>
+            </StyledAboutBioCopy>
+          </StyledAboutBio>
+        </Container>
+      </Section>
       {/* @ts-ignore */}
       <Section className='About-gallery' color='light'>
         <Container>
-          <H3>I take photos sometimes</H3>
-          <Gallery photos={photos} />
+          <H3>I take photos sometimes 📸</H3>
+          <Gallery photos={gallery} />
         </Container>
         <FlexContainer justifyCenter>
           <Anchor href="https://www.instagram.com/caweissen" target="_blank" rel="noopener noreferrer">
-            <H6>Find more on Instagram</H6>
+            <H6>Come say hey on Instagram! &#10140;</H6>
           </Anchor>
         </FlexContainer>
       </Section>

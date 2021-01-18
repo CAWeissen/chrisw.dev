@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type { LinkProps } from 'react-router-dom';
 import { StyledLink } from './styles';
 

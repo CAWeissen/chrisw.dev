@@ -38,8 +38,8 @@ export const white = new Color('#fff');
 export const offWhite = new Color('#f6f6f6');
 export const lightGray = new Color('#e5e5e5');
 export const gray = new Color('#a7a7a7');
-export const darkGray = new Color('#333');
-export const black = new Color('#222');
+export const darkGray = new Color('#222');
+export const black = new Color('#111');
 
 // export const bgLight = new Color('#f5f4ff');
 export const bgLight = offWhite;
@@ -75,5 +75,5 @@ export const darkTheme = {
   tan: darkTan,
   salmon: darkSalmon,
   dark: offWhite,
-  light: darkGray
+  light: black
 }

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Logo from '../Logo/index';
 import { DarkModeIcon, StyledHeader, StyledHeaderActions, StyledHeaderActionsButtons, StyledLogoContainer, StyledMobileTrigger, StyledNavItem } from './styles';
 import { Link } from 'react-router-dom';

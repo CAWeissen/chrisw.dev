@@ -85,7 +85,7 @@ export default function MiataModel(props: JSX.IntrinsicElements['group'] & Miata
   const actions = useRef<GLTFActions>()
   const [mixer] = useState(() => new THREE.AnimationMixer(null as any))
 
-  console.log(lightsStatus, isDark);
+  // console.log(lightsStatus, isDark);
 
   // const { intensity, distance, pX, pY, pZ } = useTweaks({
   //   intensity: {
@@ -172,7 +172,7 @@ export default function MiataModel(props: JSX.IntrinsicElements['group'] & Miata
 
   const playAnimation = (anim:'closeLights' | 'openLights') => {
     if (actions.current) {
-      console.log(actions.current[anim]);
+      // console.log(actions.current[anim]);
       actions.current[anim].play();
     }
   }

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type * as THREE from 'three';
 import { Canvas, useFrame } from 'react-three-fiber';
 import { PerspectiveCamera, Plane, Shadow } from '@react-three/drei';

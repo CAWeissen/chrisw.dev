@@ -1,6 +1,7 @@
 import { StyledFlexContainer, StyledSection } from '../../components/Container/styles';
 import styled from 'styled-components';
 import { H1 } from '../../utils/typography';
+import { StyledImage } from '../../components/Image/styles';
 
 const StyledAbout = styled.section`
   display: grid;
@@ -39,4 +40,29 @@ const StyledAboutIntro = styled.div`
   }
 `;
 
-export { StyledAbout, StyledAboutIntro };
+const StyledAboutBio = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  ${StyledImage} {
+    object-fit: cover;
+    margin-bottom: 2em;
+    max-height: 500px;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 720px) {
+    flex-direction: row;
+
+    ${StyledImage} {
+      margin-bottom: 0;
+      margin-right: 3em;
+    }
+  }
+`;
+
+const StyledAboutBioCopy = styled.div`
+  width: 100%;
+`;
+
+export { StyledAbout, StyledAboutBio, StyledAboutBioCopy, StyledAboutIntro };

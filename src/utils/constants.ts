@@ -69,7 +69,7 @@ export const skills = [
   'Spanish'
 ]
 
-export const photos = [
+export const gallery = [
   {
     src: './assets/img/DSC00493.jpg',
     width: 3,
@@ -91,7 +91,7 @@ export const photos = [
     height: 2
   },
   {
-    src: './assets/img/IMG_7579.jpg',
+    src: './assets/img/DSC01487.jpg',
     width: 3,
     height: 2
   },

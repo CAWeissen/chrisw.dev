@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { StyledFooter } from './styles';
 import { H6 } from '../../utils/typography';
 import { FlexContainer, Section } from '../Container/index';
@@ -27,7 +27,7 @@ function Footer({}:FooterProps) {
 
   return (
     <StyledFooter>
-      <Section color={'black'}>
+      <Section color={'darkGray'}>
         <FlexContainer direction="column" alignEnd>
           <Button color={'white'} round onClick={copyEmail}>
             <span ref={footerButton}>{address}@{domain}</span>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { InView } from 'react-intersection-observer';
 
 import { HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemMedia, HomeProjectGridItemInfo, StyledHome, SkillsList, Skill, JobGroup} from './styles';
