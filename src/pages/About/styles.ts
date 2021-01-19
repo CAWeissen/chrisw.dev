@@ -1,6 +1,6 @@
 import { StyledFlexContainer, StyledSection } from '../../components/Container/styles';
 import styled from 'styled-components';
-import { H1 } from '../../utils/typography';
+import { H1, P } from '../../utils/typography';
 import { StyledImage } from '../../components/Image/styles';
 
 const StyledAbout = styled.section`
@@ -51,12 +51,20 @@ const StyledAboutBio = styled.div`
     width: 100%;
   }
 
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 769px) {
     flex-direction: row;
 
     ${StyledImage} {
       margin-bottom: 0;
       margin-right: 3em;
+    }
+  }
+
+  ${P} {
+    span {
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 400;
     }
   }
 `;

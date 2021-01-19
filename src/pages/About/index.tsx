@@ -101,8 +101,8 @@ function About({darkMode}: AboutProps) {
             <Image src="/assets/img/geysers.jpg" alt="Chris Weissenberger"/>
             <StyledAboutBioCopy>
               <P>Went to university to become a game developer, and I came out a web developer.</P>
-              <P>My curiosity and creativity have always shaped me, and pour into the rest of my life through photography, volunteerism, travel...</P>
-              <P>...and a tendency to take on bigger projects than my wife thinks I should. <small>(Let's just say I won't be changing my car's suspension again anytime soon.)</small></P>
+              <P light>My curiosity and creativity have always shaped me, and pour into the rest of my life through photography, volunteerism, travel...</P>
+              <P light>...and a tendency to take on bigger projects than my wife thinks I should. <span>(Let's just say I won't be changing my car's suspension again anytime soon.)</span></P>
             </StyledAboutBioCopy>
           </StyledAboutBio>
         </Container>

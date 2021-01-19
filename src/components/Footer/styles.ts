@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StyledContainer } from '../Container/styles';
+import { StyledContainer, StyledSection } from '../Container/styles';
 
 const StyledFooter = styled.footer`
   background-color: var(--bgColor);
@@ -16,6 +16,10 @@ const StyledFooter = styled.footer`
     position: absolute;
     left: 5vw;
     width: 256px;
+  }
+
+  ${StyledSection} {
+    padding: 5vmin 0;
   }
 
   ${StyledContainer} {

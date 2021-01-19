@@ -63,7 +63,13 @@ function Home({}:HomeProps) {
         <Container>
           <H5>Skills</H5>
           <SkillsList>
-            {skills.map((skill:string, index:number) => <Skill key={index}>{skill}</Skill>)}
+            {skills.map((skill:string, index:number) => (
+              <InView key={index}>
+                {({ inView, ref }) => (
+                  <Skill key={index} ref={ref} delay={index} className={inView ? 'is-visible' : 'will-reveal'}>{skill}</Skill>
+                )}
+              </InView>
+            ))}
           </SkillsList>
         </Container>
       </Section>

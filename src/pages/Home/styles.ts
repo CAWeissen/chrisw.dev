@@ -192,12 +192,21 @@ const SkillsList = styled.ul`
   width: 100%;
 `;
 
-const Skill = styled.li`
+const Skill = styled.li<{delay:number}>`
   font-style: italic;
   line-height: 2;
   list-style-type: none;
   margin-right: 2em;
+  opacity: 0;
   position: relative;
+  transform: translateY(8px);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.2s ease;
+    transition-delay: ${props => props.delay * 0.075}s;
+  }
 
   &:last-child::after {
     content: none;
