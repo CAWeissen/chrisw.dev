@@ -75,7 +75,7 @@ const HomeProjectGrid = styled.div`
   /* CSS Grid */
   display: grid;
   grid-gap: 5vw;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(20ch, 30vw, 40ch), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(clamp(20ch, 22.5vw, 40ch), 1fr));
 `;
 
 const HomeProjectGridItemMedia = styled.div`

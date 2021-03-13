@@ -27,6 +27,17 @@ const StyledLogo = styled.div`
     }
   }
 
+  @keyframes move-right {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
   a {
     color: var(--textColor);
     align-items: center;
@@ -35,6 +46,19 @@ const StyledLogo = styled.div`
     font-size: 1.5em;
     font-weight: 600;
     text-decoration: none;
+  }
+
+  .logo-name {
+    animation-delay: 1.1s;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-name: move-right;
+    animation-timing-function: ease;
+    opacity: 0;
+
+    & + .logo-name {
+      animation-delay: 1.15s;
+    }
   }
 
   svg {

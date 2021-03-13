@@ -11,7 +11,10 @@ function Logo ({}: React.Props<LogoProps>) {
     <StyledLogo>
       <Link to="/">
         <CW />
-        <span>Chris<br />Weissenberger</span>
+        <div>
+          <div className="logo-name">Chris</div>
+          <div className="logo-name">Weissenberger</div>
+        </div>
       </Link>
     </StyledLogo>
   )
