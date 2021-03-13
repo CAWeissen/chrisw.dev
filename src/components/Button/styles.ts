@@ -11,11 +11,11 @@ interface ButtonProps {
 }
 
 const StyledButton = styled.button<ButtonProps>`
-  --bgColor: ${({color, theme}) => color ? theme[color].toHexString() : theme.dark};
-  --textColor: ${({color, theme}) => tinycolor.mostReadable((color ? theme[color] : theme.dark), [white, darkGray]).toHexString()};
+  --bgColor: ${({color, theme}) => color ? theme[color].toHexString() : 'transparent'};
+  --textColor: ${({color, theme}) => tinycolor.mostReadable((color ? theme[color] : theme.light), [white, darkGray]).toHexString()};;
   align-items: center;
   background-color: var(--bgColor);
-  border: 3px solid transparent;
+  border: 3px solid var(--textColor);
   border-radius: ${({round}) => round ? '3em' : '0.25em'};
   color: var(--textColor);
   cursor: pointer;
@@ -46,9 +46,9 @@ const StyledButton = styled.button<ButtonProps>`
   `}
 
   &:hover {
-    --bgColor: ${({color, theme}) => color ? theme[color].toHexString() : theme.light};
-    --textColor: ${({color, theme}) => tinycolor.mostReadable((color ? theme[color] : theme.light), [white, darkGray]).toHexString()};;
-    border: 3px solid var(--textColor);
+    --bgColor: ${({color, theme}) => color ? theme[color].toHexString() : theme.dark};
+    --textColor: ${({color, theme}) => tinycolor.mostReadable((color ? theme[color] : theme.dark), [white, darkGray]).toHexString()};
+    border: 3px solid transparent;
   }
 
   &:active {

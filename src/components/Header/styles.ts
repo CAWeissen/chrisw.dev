@@ -223,7 +223,7 @@ const DarkModeIcon = styled.div<{darkMode:boolean}>`
   width: 14px;
 
   &::after {
-    background-color: var(--bgColor);
+    /* background-color: var(--bgColor); */
     border-radius: 50%;
     content: '';
     display: block;
@@ -250,6 +250,7 @@ const DarkModeIcon = styled.div<{darkMode:boolean}>`
       -8px 8px 0 -5px currentColor,
       0px 12px 0 -5px currentColor;
     ` : `
+    clip-path: path('M11.907,0.036C16.52,0.959 20,5.036 20,9.92C20,15.483 15.483,20 9.92,20C5.036,20 0.959,16.52 0.036,11.907C1.579,13.669 3.845,14.782 6.368,14.782C11.012,14.782 14.782,11.012 14.782,6.368C14.782,3.845 13.669,1.579 11.907,0.036Z');
       color: #ffa700;
       height: 20px;
       width: 20px;
