@@ -234,12 +234,12 @@ const DarkModeIcon = styled.div<{darkMode:boolean}>`
     transition: all 0.2s ease;
     width: 20px;
 
-    ${props => props.darkMode && `
+    ${({darkMode}) => darkMode && `
       transform: translateX(-6px) scale(0);
     `}
   }
 
-  ${props => props.darkMode ? `
+  ${({darkMode}) => darkMode ? `
       box-shadow:
       8px 8px 0 -5px currentColor,
       12px 0 0 -5px currentColor,

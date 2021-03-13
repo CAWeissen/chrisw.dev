@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { InView } from 'react-intersection-observer';
 
 import { HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemMedia, HomeProjectGridItemInfo, StyledHome, SkillsList, Skill, JobGroup} from './styles';
@@ -12,9 +12,8 @@ import { StyledLink } from '../../components/Link/styles';
 interface HomeProps {};
 
 function Home({}:HomeProps) {
-
   return (
-    <StyledHome>
+    <StyledHome data-scroll-section>
       <Section>
         <Container>
           <InView>
@@ -37,22 +36,24 @@ function Home({}:HomeProps) {
         <Container thin>
           <InView>
             {({ inView, ref }) => (
-              <H2 ref={ref} className={inView ? 'reveal is-visible' : 'reveal'} style={{textAlign: 'center', marginBottom: '2em'}}>What I've Worked On:</H2>
+              <H2 ref={ref} className={inView ? 'reveal is-visible' : 'reveal'} style={{textAlign: 'center', marginBottom: '2em'}}>What I've Built:</H2>
             )}
           </InView>
           <HomeProjectGrid>
             {projectData.map(({name, date, url, image, video}, index) => (
               <InView key={index}>
                 {({ inView, ref }) => (
-                  <HomeProjectGridItem ref={ref} index={index} className={inView ? 'is-visible' : 'will-reveal'} href={url} target="_blank" rel="noopener noreferrer">
-                    <HomeProjectGridItemInfo>
-                      <H6>{name}</H6>
-                    </HomeProjectGridItemInfo>
-                    <HomeProjectGridItemMedia>
-                      <img src={image} alt={name}></img>
-                      <video src={video} poster={image} preload="none" autoPlay muted loop></video>
-                    </HomeProjectGridItemMedia>
-                  </HomeProjectGridItem>
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <HomeProjectGridItem ref={ref} index={index} className={inView ? 'is-visible' : 'will-reveal'} href={url} target="_blank" rel="noopener noreferrer">
+                      <HomeProjectGridItemInfo>
+                        <H6>{name}</H6>
+                      </HomeProjectGridItemInfo>
+                      <HomeProjectGridItemMedia>
+                        <img src={image} alt={name}></img>
+                        <video src={video} poster={image} preload="none" autoPlay muted loop></video>
+                      </HomeProjectGridItemMedia>
+                    </HomeProjectGridItem>
+                  </Suspense>
                 )}
               </InView>
             ))}

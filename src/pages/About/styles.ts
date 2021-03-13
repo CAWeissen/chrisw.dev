@@ -1,5 +1,5 @@
-import { StyledFlexContainer, StyledSection } from '../../components/Container/styles';
 import styled from 'styled-components';
+import { StyledFlexContainer, StyledSection } from '../../components/Container/styles';
 import { H1, P } from '../../utils/typography';
 import { StyledImage } from '../../components/Image/styles';
 

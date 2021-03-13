@@ -18,14 +18,14 @@ export const projectData = [
   {
     name: 'Union',
     date: 'February 2019',
-    url: 'https://www.union.co',
+    url: 'https://union.co',
     image: '/assets/img/projects/union.jpg',
     video: '/assets/video/union.webm'
   },
   {
     name: 'Charlotte\'s Got a Lot',
     date: 'February 2019',
-    url: 'https://www.charlottesgotalot.com/trails',
+    url: 'https://www.charlottesgotalot.com',
     image: '/assets/img/projects/charlottesgotalot-trails.jpg',
     video: '/assets/video/crva-trails.webm'
   },
@@ -50,13 +50,14 @@ export const skills = [
   'CSS',
   'JavaScript',
   'TypeScript',
-  'PHP',
-  'Node.js',
+  'Design Systems',
   'React',
   'Vue',
   'Angular',
   'React Native',
   'three.js',
+  'PHP',
+  'Node.js',
   'Augmented Reality',
   'Virtual Reality',
   'Game Development',

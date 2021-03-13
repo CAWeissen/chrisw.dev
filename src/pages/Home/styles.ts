@@ -1,5 +1,5 @@
-import { StyledSection } from '../../components/Container/styles';
 import styled from 'styled-components';
+import { StyledSection } from '../../components/Container/styles';
 import { StyledImage } from '../../components/Image/styles';
 import { H3, H6, P } from '../../utils/typography';
 
@@ -23,7 +23,7 @@ const HomeIntro = styled.div`
     width: 100%;
 
     &::after {
-      background: ${props => props.theme.salmon};
+      background: ${({theme}) => theme.salmon};
       bottom: 0;
       content: '';
       height: 80%;
@@ -82,6 +82,7 @@ const HomeProjectGridItemMedia = styled.div`
   position: relative;
   margin-right: 3em;
   max-width: 720px;
+  overflow: hidden;
   transition: all 0.3s ease;
   width: 60%;
 
@@ -128,7 +129,7 @@ const HomeProjectGridItem = styled.a<{index:number}>`
   position: relative;
   text-decoration: none;
   transition: opacity 0.3s ease, transform 0.4s ease;
-  transition-delay: ${props => (props.index % 3) * 100}ms;
+  transition-delay: ${({index}) => (index % 3) * 100}ms;
   transform: translateY(100px);
 
   /* CSS Grid */
@@ -205,7 +206,7 @@ const Skill = styled.li<{delay:number}>`
     opacity: 1;
     transform: translateY(0);
     transition: all 0.2s ease;
-    transition-delay: ${props => props.delay * 0.075}s;
+    transition-delay: ${({delay}) => delay * 0.075}s;
   }
 
   &:last-child::after {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import type * as THREE from 'three';
 import { Canvas, useFrame } from 'react-three-fiber';
 import { OrbitControls, PerspectiveCamera, Plane, Shadow } from '@react-three/drei';
@@ -59,7 +59,7 @@ function About({darkMode}: AboutProps) {
   }
 
   return (
-    <StyledAbout>
+    <StyledAbout data-scroll-section>
       <Section>
         <FlexContainer alignCenter justifyBetween>
           <StyledAboutIntro>
@@ -68,41 +68,42 @@ function About({darkMode}: AboutProps) {
           </StyledAboutIntro>
           <Button style={{margin: '0 auto 10vmin'}} round size={2} onClick={toggleLights}><ToggleLights /></Button>
         </FlexContainer>
-        <Canvas style={{minHeight: 'calc(100vh - 100px)', position: 'absolute', left: 0, top: 0, width: '100vw', zIndex: 0}}>
-          <PerspectiveCamera makeDefault fov={45} position={[0, 0, 4]} rotation={[0, 0, 0]} />
-          <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} position={[0, 0.5, 4]} />
-          <fog attach="fog" args={[bgColor, 5, 15]} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Canvas style={{minHeight: 'calc(100vh - 100px)', position: 'absolute', left: 0, top: 0, width: '100vw', zIndex: 0}}>
+            <PerspectiveCamera makeDefault fov={45} position={[0, 0, 4]} rotation={[0, 0, 0]} />
+            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} position={[0, 0.5, 4]} />
+            <fog attach="fog" args={[bgColor, 5, 15]} />
 
-          <MiataGroup position={[1, -0.5, 1]} rotation={[0, -Math.PI / 4, 0]}>
-            <ambientLight intensity={0.1} castShadow />
-            <directionalLight position={[0, -10, 0]} intensity={darkMode.value ? 0.5 : 1} color={darkMode.value ? '#FFFFFF' : 'white'} />
-            <directionalLight position={[5, 5, -10]} intensity={darkMode.value ? 1 : 1} color={darkMode.value ? '#b9e8ff' : 'white'} />
-            <spotLight ref={spotLight1} intensity={darkMode.value ? 0 : 1} position={[-3, 6, -10]} penumbra={1} castShadow />
-            <spotLight ref={spotLight2} intensity={darkMode.value ? 0 : 1} position={[-10, 10, 10]} penumbra={1} castShadow />
-            <spotLight ref={spotLight3} intensity={darkMode.value ? 0.1 : 0.5} color={darkMode.value ? '#DCF6F6' : 'white'} position={[10, 5, 0]} penumbra={1} castShadow />
+            <MiataGroup position={[1, -0.5, 1]} rotation={[0, -Math.PI / 4, 0]}>
+              <ambientLight intensity={0.1} castShadow />
+              <directionalLight position={[0, -10, 0]} intensity={darkMode.value ? 0.5 : 1} color={darkMode.value ? '#FFFFFF' : 'white'} />
+              <directionalLight position={[5, 5, -10]} intensity={darkMode.value ? 1 : 1} color={darkMode.value ? '#b9e8ff' : 'white'} />
+              <spotLight ref={spotLight1} intensity={darkMode.value ? 0 : 1} position={[-3, 6, -10]} penumbra={1} castShadow />
+              <spotLight ref={spotLight2} intensity={darkMode.value ? 0 : 1} position={[-10, 10, 10]} penumbra={1} castShadow />
+              <spotLight ref={spotLight3} intensity={darkMode.value ? 0.1 : 0.5} color={darkMode.value ? '#DCF6F6' : 'white'} position={[10, 5, 0]} penumbra={1} castShadow />
 
-            <gridHelper ref={grid} args={[100, 40, '#002B4B', '#002B4B']} position={[0, 0.01, 0]} />
+              <gridHelper ref={grid} args={[100, 40, '#002B4B', '#002B4B']} position={[0, 0.01, 0]} />
 
-            <Plane args={[100, 100]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-              <meshPhysicalMaterial attach="material" color={bgColor} />
-            </Plane>
+              <Plane args={[100, 100]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+                <meshPhysicalMaterial attach="material" color={bgColor} />
+              </Plane>
 
-            <React.Suspense fallback={null}>
-              <Miata isDark={darkMode.value} lightsStatus={anim} position={[0, 0.3, 0]} scale={[1, 1, 1]} rotation={[0, 0, 0]} />
-              <Shadow color="black" scale={[2, 3.5, 1]} opacity={1} position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]} />
-            </React.Suspense>
-          </MiataGroup>
-        </Canvas>
+              <React.Suspense fallback={null}>
+                <Miata isDark={darkMode.value} lightsStatus={anim} position={[0, 0.3, 0]} scale={[1, 1, 1]} rotation={[0, 0, 0]} />
+                <Shadow color="black" scale={[2, 3.5, 1]} opacity={1} position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+              </React.Suspense>
+            </MiataGroup>
+          </Canvas>
+        </Suspense>
       </Section>
-      <Section color="green">
+      <Section autoHeight color="green">
         <Container>
           <H3>From games to websites</H3>
           <StyledAboutBio>
             <Image src="/assets/img/geysers.jpg" alt="Chris Weissenberger"/>
             <StyledAboutBioCopy>
               <P>Went to university to become a game developer, and I came out a web developer.</P>
-              <P light>My curiosity and creativity have always shaped me, and pour into the rest of my life through photography, volunteerism, travel...</P>
-              <P light>...and a tendency to take on bigger projects than my wife thinks I should. <span>(Let's just say I won't be changing my car's suspension again anytime soon.)</span></P>
+              <P light>My curiosity and creativity have always shaped me, and pour into the rest of my life through photography, volunteerism, and travel.</P>
             </StyledAboutBioCopy>
           </StyledAboutBio>
         </Container>

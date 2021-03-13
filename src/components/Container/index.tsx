@@ -23,6 +23,7 @@ interface FlexContainerProps {
 };
 
 interface SectionProps {
+  autoHeight?: boolean;
   children: any[] | any;
   color?: string;
   doubled?: boolean;

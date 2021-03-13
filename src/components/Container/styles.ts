@@ -1,13 +1,13 @@
-import Color, { darkGray, white } from '../../utils/theme';
 import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
+import Color, { darkGray, white } from '../../utils/theme';
 
-type ContainerProps = {
+interface ContainerProps {
   thin?: boolean;
   webGL?: boolean;
 }
 
-type FlexContainerProps = {
+interface FlexContainerProps {
   thin?: boolean;
   dir: 'row' | 'column';
   alignCenter?: boolean;
@@ -20,7 +20,8 @@ type FlexContainerProps = {
   justifyEnd?: boolean;
 }
 
-type SectionProps = {
+interface SectionProps {
+  autoHeight?: boolean;
   bg?: string;
   doubled?: boolean;
   full?: boolean;
@@ -30,14 +31,14 @@ const StyledContainer = styled.div<ContainerProps>`
   margin: 0 auto;
   max-width: 1400px;
   position: relative;
-  width: ${props => props.thin ? '80vw' : '90vw'};
+  width: ${({thin}) => thin ? '80vw' : '90vw'};
   z-index: 1;
 
   @media (max-width: 640px) {
     width: 90vw;
   }
 
-  ${props => props.webGL && `
+  ${({webGL}) => webGL && `
     left: 50%;
     position: absolute;
     top: 50%;
@@ -46,20 +47,20 @@ const StyledContainer = styled.div<ContainerProps>`
 `;
 
 const StyledFlexContainer = styled.div<FlexContainerProps>`
-  ${props => props.justifyAround && 'justify-content: space-around;'}
-  ${props => props.justifyBetween && 'justify-content: space-between;'}
-  ${props => props.justifyCenter && 'justify-content: center;'}
-  ${props => props.justifyStart && 'justify-content: flex-start;'}
-  ${props => props.justifyEnd && 'justify-content: flex-end;'}
-  ${props => props.alignCenter && 'align-items: center;'}
-  ${props => props.alignEnd && 'align-items: flex-end;'}
-  ${props => props.alignStart && 'align-items: flex-start;'}
+  ${({justifyAround}) => justifyAround && 'justify-content: space-around;'}
+  ${({justifyBetween}) => justifyBetween && 'justify-content: space-between;'}
+  ${({justifyCenter}) => justifyCenter && 'justify-content: center;'}
+  ${({justifyStart}) => justifyStart && 'justify-content: flex-start;'}
+  ${({justifyEnd}) => justifyEnd && 'justify-content: flex-end;'}
+  ${({alignCenter}) => alignCenter && 'align-items: center;'}
+  ${({alignEnd}) => alignEnd && 'align-items: flex-end;'}
+  ${({alignStart}) => alignStart && 'align-items: flex-start;'}
   display: flex;
-  flex-direction: ${props => props.dir};
+  flex-direction: ${({dir}) => dir};
   margin: 0 auto;
   max-width: 1400px;
   position: relative;
-  width: ${props => props.thin ? '80vw' : '90vw'};
+  width: ${({thin}) => thin ? '80vw' : '90vw'};
   z-index: 1;
 
   @media (max-width: 640px) {
@@ -69,15 +70,16 @@ const StyledFlexContainer = styled.div<FlexContainerProps>`
 `;
 
 const StyledSection = styled.section<SectionProps>`
-  --bgColor: ${props => props.bg ? props.theme[props.bg].toHexString() : props.theme.bg};
-  --textColor: ${props => tinycolor.mostReadable((props.bg ? props.theme[props.bg] : props.theme.bg), [white, darkGray]).toHexString()};
-  background-color: ${props => props.bg ? props.theme[props.bg].toHexString() : props.theme.bg};
+  --bgColor: ${({bg, theme}) => bg ? theme[bg].toHexString() : theme.bg};
+  --textColor: ${({bg, theme}) => tinycolor.mostReadable((bg ? theme[bg] : theme.bg), [white, darkGray]).toHexString()};
+  background-color: ${({bg, theme}) => bg ? theme[bg].toHexString() : theme.bg};
   color: var(--textColor);
   display: flex;
   flex-direction: column;
-  ${props => props.full && 'height: 100vh;'}
+  ${({full}) => full && 'height: 100vh;'}
+  ${({autoHeight}) => autoHeight && 'min-height: 0 !important;'};
   padding: 10vmin 0;
-  ${props => props.doubled && 'padding-top: 0;'};
+  ${({doubled}) => doubled && 'padding-top: 0;'};
   position: relative;
   transition: all 0.5s ease;
   width: 100%;

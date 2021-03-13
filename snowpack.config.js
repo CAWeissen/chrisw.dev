@@ -10,19 +10,10 @@ module.exports = {
     ['snowpack-plugin-svgr', { /* options */ }],
     ["@snowpack/plugin-webpack"]
   ],
-  install: [
-    /* ... */
-  ],
-  installOptions: {
-    /* ... */
-  },
   devOptions: {
     /* ... */
   },
   buildOptions: {
-    /* ... */
-  },
-  proxy: {
     /* ... */
   },
   alias: {

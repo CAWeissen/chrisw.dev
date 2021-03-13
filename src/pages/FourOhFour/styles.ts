@@ -1,5 +1,5 @@
-import { StyledSection } from '../../components/Container/styles';
 import styled from 'styled-components';
+import { StyledSection } from '../../components/Container/styles';
 import { H1 } from '../../utils/typography';
 
 const StyledFourOhFour = styled.section`

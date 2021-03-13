@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { black, white } from '../../utils/theme';
 
-type ColorProps = {
+interface ColorProps {
   themeColor: string;
 }
 
@@ -20,8 +20,8 @@ const StyleguideGrid = styled.div`
 
 const StyledColor = styled.div<ColorProps>`
   align-items: center;
-  background-color: ${props => props.theme[props.themeColor].toHexString()};
-  color: ${props => tinycolor.mostReadable(props.theme[props.themeColor], [white, black]).toHexString()};
+  background-color: ${({theme, themeColor}) => theme[themeColor].toHexString()};
+  color: ${({theme, themeColor}) => tinycolor.mostReadable(theme[themeColor], [white, black]).toHexString()};
   display: flex;
   font-family: var(--fontSerif);
   font-weight: bold;

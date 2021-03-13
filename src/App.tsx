@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import useDarkMode from 'use-dark-mode';
 
 import About from './pages/About/index';
 import Home from './pages/Home/index';
-// import Projects from './pages/Projects/index';
-// import StyleguidePage from './pages/Styleguide/index';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -14,8 +12,10 @@ import { H1, H2, H3, H4, H5, H6, P } from './utils/typography';
 import { darkTheme, lightTheme } from './utils/theme';
 import { StyledButton } from './components/Button/styles';
 import FourOhFour from './pages/FourOhFour';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 function App() {
+  const appRef = useRef(null);
   const darkMode = useDarkMode(true);
   const theme = darkMode.value ? darkTheme : lightTheme;
 
@@ -68,28 +68,26 @@ function App() {
   `;
 
   return (
-    <StyledApp>
+    <StyledApp data-scroll-container ref={appRef}>
       <ThemeProvider theme={theme}>
         <HashRouter>
           <ScrollToTop />
           <Header darkMode={darkMode} />
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/about">
-              <About darkMode={darkMode} />
-            </Route>
-            {/* <Route exact path="/projects">
-              <Projects />
-            </Route>
-            <Route exact path="/styleguide">
-              <StyleguidePage />
-            </Route> */}
-            <Route path="*">
-              <FourOhFour />
-            </Route>
-          </Switch>
+          <TransitionGroup className="transition-group">
+            <CSSTransition key={window.location.pathname} timeout={500}>
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route exact path="/about">
+                  <About darkMode={darkMode} />
+                </Route>
+                <Route path="*">
+                  <FourOhFour />
+                </Route>
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
           <Footer />
         </HashRouter>
       </ThemeProvider>
