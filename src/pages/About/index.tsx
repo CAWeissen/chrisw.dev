@@ -31,16 +31,16 @@ const toggleLights = () => {
 }
 
 function About({darkMode}: AboutProps) {
+  const [mounted, mountedSet] = React.useState(false);
   const grid = React.useRef<THREE.GridHelper>();
   const spotLight1 = React.useRef<THREE.SpotLight>();
   const spotLight2 = React.useRef<THREE.SpotLight>();
   const spotLight3 = React.useRef<THREE.SpotLight>();
   let bgColor:string = darkMode.value ? bgDark.toHexString() : bgLight.toHexString();
-  const [mounted, mountedSet] = React.useState(false);
 
   React.useEffect(() => {
     if (!mounted) {
-      setTimeout(() => mountedSet(true), 300);
+      mountedSet(true);
       anim = darkMode.value ? 'close' : 'open';
     }
   }, [mounted])

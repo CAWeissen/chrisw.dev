@@ -49,7 +49,7 @@ function Miata({darkMode, anim}: MiataProps) {
 
           <MiataGroup position={[1, 0, 1]} rotation={[0, -Math.PI / 4, 0]}>
             <ambientLight intensity={0.1} castShadow />
-            <directionalLight intensity={darkMode.value ? 1 : 1} color={darkMode.value ? '#DCF6F6' : 'white'} />
+            <directionalLight intensity={1} color={darkMode.value ? '#DCF6F6' : 'white'} />
             <spotLight ref={spotLight1} intensity={darkMode.value ? 0 : 1} position={[-3, 6, -10]} penumbra={1} castShadow />
             <spotLight ref={spotLight2} intensity={darkMode.value ? 0 : 1} position={[-10, 10, 10]} penumbra={1} castShadow />
             <spotLight ref={spotLight3} intensity={darkMode.value ? 0.1 : 0.5} color={darkMode.value ? '#DCF6F6' : 'white'} position={[10, 5, 0]} penumbra={1} castShadow />
