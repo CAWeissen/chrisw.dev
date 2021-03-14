@@ -6,7 +6,7 @@ interface ColorProps {
   themeColor: string;
 }
 
-const Styleguide = styled.section`
+const Styleguide = styled.div`
   min-height: 100%;
   width: 100%;
 `;

@@ -36,7 +36,7 @@ function Home({}:HomeProps) {
         <Container thin>
           <InView>
             {({ inView, ref }) => (
-              <H2 ref={ref} className={inView ? 'reveal is-visible' : 'reveal'} style={{textAlign: 'center', marginBottom: '2em'}}>What I've Built:</H2>
+              <H2 ref={ref} className={inView ? 'reveal is-visible' : 'reveal'} style={{textAlign: 'center', marginBottom: '2em'}}>Some of What I've Built:</H2>
             )}
           </InView>
           <HomeProjectGrid>

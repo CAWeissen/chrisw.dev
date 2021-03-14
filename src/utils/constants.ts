@@ -58,6 +58,7 @@ export const skills = [
   'three.js',
   'PHP',
   'Node.js',
+  'GraphQL',
   'Augmented Reality',
   'Virtual Reality',
   'Game Development',

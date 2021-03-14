@@ -19,7 +19,7 @@ function FourOhFour({}:FourOhFourProps) {
           <Section color={'light'}>
             {/* @ts-ignore */}
             <FlexContainer direction={'column'} alignCenter justifyCenter style={{margin: 'auto'}}>
-              <H1 ref={ref} className={inView ? 'reveal is-visible' : 'reveal'}>404 Not Found</H1>
+              <H1 ref={ref} className={inView ? 'reveal is-visible' : 'reveal'}>404</H1>
               <P>I got lost in an Ikea once, so I sympathize.</P>
               <StyledLink to="/">
                 <Button>Go home</Button>

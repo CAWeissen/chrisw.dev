@@ -1,10 +1,10 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import type * as THREE from 'three';
 import { Canvas, useFrame } from 'react-three-fiber';
-import { OrbitControls, PerspectiveCamera, Plane, Shadow } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, Plane, Shadow, useProgress } from '@react-three/drei';
 import Gallery from 'react-photo-gallery';
 
-import { StyledAbout, StyledAboutBio, StyledAboutBioCopy, StyledAboutIntro } from './styles';
+import { StyledAbout, StyledAboutBio, StyledAboutBioCopy, StyledAboutIntro, StyledThree } from './styles';
 import { gallery } from '../../utils/constants';
 import { bgDark, bgLight } from '../../utils/theme';
 import { H1, H2, H3, H4, H5, H6, P } from '../../utils/typography';
@@ -36,11 +36,11 @@ function About({darkMode}: AboutProps) {
   const spotLight2 = React.useRef<THREE.SpotLight>();
   const spotLight3 = React.useRef<THREE.SpotLight>();
   let bgColor:string = darkMode.value ? bgDark.toHexString() : bgLight.toHexString();
-  let mounted:boolean = false;
+  const [mounted, mountedSet] = React.useState(false);
 
   React.useEffect(() => {
     if (!mounted) {
-      mounted = true;
+      setTimeout(() => mountedSet(true), 300);
       anim = darkMode.value ? 'close' : 'open';
     }
   }, [mounted])
@@ -58,18 +58,13 @@ function About({darkMode}: AboutProps) {
     return <group {...groupProps}>{children}</group>
   }
 
-  return (
-    <StyledAbout data-scroll-section>
-      <Section>
-        <FlexContainer alignCenter justifyBetween>
-          <StyledAboutIntro>
-            <H4>If you've ever seen the tall redhead in the tiny car driving around Charlotte...</H4>
-            <H1>That's me.</H1>
-          </StyledAboutIntro>
-          <Button style={{margin: '0 auto 10vmin'}} round size={2} onClick={toggleLights}><ToggleLights /></Button>
-        </FlexContainer>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Canvas style={{minHeight: 'calc(100vh - 100px)', position: 'absolute', left: 0, top: 0, width: '100vw', zIndex: 0}}>
+  function ThreeCanvas() {
+    const [ready, readySet] = React.useState(false);
+
+    return (
+      <StyledThree className={ready ? 'is-ready' : ''}>
+        <Canvas style={{minHeight: 'calc(100vh - 100px)', position: 'absolute', left: 0, top: 0, width: '100vw', zIndex: 0}} onCreated={() => readySet(true)}>
+          <React.Suspense fallback={null}>
             <PerspectiveCamera makeDefault fov={45} position={[0, 0, 4]} rotation={[0, 0, 0]} />
             <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} position={[0, 0.5, 4]} />
             <fog attach="fog" args={[bgColor, 5, 15]} />
@@ -88,13 +83,26 @@ function About({darkMode}: AboutProps) {
                 <meshPhysicalMaterial attach="material" color={bgColor} />
               </Plane>
 
-              <React.Suspense fallback={null}>
-                <Miata isDark={darkMode.value} lightsStatus={anim} position={[0, 0.3, 0]} scale={[1, 1, 1]} rotation={[0, 0, 0]} />
-                <Shadow color="black" scale={[2, 3.5, 1]} opacity={1} position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]} />
-              </React.Suspense>
+              <Miata isDark={darkMode.value} lightsStatus={anim} position={[0, 0.3, 0]} scale={[1, 1, 1]} rotation={[0, 0, 0]} />
+              <Shadow color="black" scale={[2, 3.5, 1]} opacity={1} position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]} />
             </MiataGroup>
-          </Canvas>
-        </Suspense>
+          </React.Suspense>
+        </Canvas>
+      </StyledThree>
+    )
+  }
+
+  return (
+    <StyledAbout data-scroll-section>
+      <Section>
+        <FlexContainer alignCenter justifyBetween>
+          <StyledAboutIntro>
+            <H4>If you've ever seen the tall redhead in the tiny car driving around Charlotte...</H4>
+            <H1>That's me.</H1>
+          </StyledAboutIntro>
+          <Button style={{margin: '0 auto 10vmin'}} round size={2} onClick={toggleLights}><ToggleLights /></Button>
+        </FlexContainer>
+        {mounted ? <ThreeCanvas /> : ''}
       </Section>
       <Section autoHeight color="green">
         <Container>

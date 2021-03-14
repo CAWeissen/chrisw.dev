@@ -3,7 +3,7 @@ import { StyledFlexContainer, StyledSection } from '../../components/Container/s
 import { H1, P } from '../../utils/typography';
 import { StyledImage } from '../../components/Image/styles';
 
-const StyledAbout = styled.section`
+const StyledAbout = styled.div`
   display: grid;
   width: 100%;
 
@@ -73,4 +73,15 @@ const StyledAboutBioCopy = styled.div`
   width: 100%;
 `;
 
-export { StyledAbout, StyledAboutBio, StyledAboutBioCopy, StyledAboutIntro };
+const StyledThree = styled.div`
+  canvas {
+    opacity: 0;
+    transition: opacity 0.2s ease 0.5s;
+  }
+
+  &.is-ready canvas {
+    opacity: 1;
+  }
+`;
+
+export { StyledAbout, StyledAboutBio, StyledAboutBioCopy, StyledAboutIntro, StyledThree };

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch, useLocation } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import useDarkMode from 'use-dark-mode';
 
 import About from './pages/About/index';
@@ -12,7 +13,34 @@ import { H1, H2, H3, H4, H5, H6, P } from './utils/typography';
 import { darkTheme, lightTheme } from './utils/theme';
 import { StyledButton } from './components/Button/styles';
 import FourOhFour from './pages/FourOhFour';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
+function Content() {
+  const darkMode = useDarkMode(true);
+  const location = useLocation();
+
+  return (
+    <>
+      <ScrollToTop />
+      <Header darkMode={darkMode} />
+      <TransitionGroup className="content">
+        <CSSTransition key={location.pathname} timeout={500} classNames="transition">
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/about">
+              <About darkMode={darkMode} />
+            </Route>
+            <Route path="*">
+              <FourOhFour />
+            </Route>
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
+      <Footer />
+    </>
+  )
+}
 
 function App() {
   const appRef = useRef(null);
@@ -62,6 +90,30 @@ function App() {
       }
     }
 
+    .transition-exit {
+      section {
+        opacity: 1;
+      }
+    }
+
+    .transition-exit-active {
+      section {
+        opacity: 0;
+      }
+    }
+
+    .transition-enter {
+      section {
+        opacity: 0;
+      }
+    }
+
+    .transition-enter-active {
+      section {
+        opacity: 1;
+      }
+    }
+
     @media screen and (min-width: 720px) {
       padding-top: 100px;
     }
@@ -71,24 +123,7 @@ function App() {
     <StyledApp data-scroll-container ref={appRef}>
       <ThemeProvider theme={theme}>
         <HashRouter>
-          <ScrollToTop />
-          <Header darkMode={darkMode} />
-          <TransitionGroup className="transition-group">
-            <CSSTransition key={window.location.pathname} timeout={500}>
-              <Switch>
-                <Route exact path="/">
-                  <Home />
-                </Route>
-                <Route exact path="/about">
-                  <About darkMode={darkMode} />
-                </Route>
-                <Route path="*">
-                  <FourOhFour />
-                </Route>
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
-          <Footer />
+          <Content />
         </HashRouter>
       </ThemeProvider>
     </StyledApp>

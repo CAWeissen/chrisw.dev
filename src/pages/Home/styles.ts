@@ -3,7 +3,7 @@ import { StyledSection } from '../../components/Container/styles';
 import { StyledImage } from '../../components/Image/styles';
 import { H3, H6, P } from '../../utils/typography';
 
-const StyledHome = styled.section`
+const StyledHome = styled.div`
   display: grid;
   width: 100%;
 
@@ -74,7 +74,7 @@ const HomeProjectGrid = styled.div`
 
   /* CSS Grid */
   display: grid;
-  grid-gap: 5vw;
+  grid-gap: 3.5vw;
   grid-template-columns: repeat(auto-fit, minmax(clamp(20ch, 22.5vw, 40ch), 1fr));
 `;
 

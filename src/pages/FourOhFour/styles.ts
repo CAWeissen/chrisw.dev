@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { StyledSection } from '../../components/Container/styles';
 import { H1 } from '../../utils/typography';
 
-const StyledFourOhFour = styled.section`
+const StyledFourOhFour = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
