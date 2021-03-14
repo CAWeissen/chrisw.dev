@@ -75,27 +75,32 @@ export const gallery = [
   {
     src: './assets/img/DSC00493.jpg',
     width: 3,
-    height: 2
+    height: 2,
+    url: 'https://www.instagram.com/p/B3S7TknHlCr/'
   },
   {
     src: './assets/img/DSC01472.jpg',
     width: 3,
-    height: 2
+    height: 2,
+    url: 'https://www.instagram.com/p/B3iTQByBNXE/'
   },
   {
     src: './assets/img/DSC01004.jpg',
     width: 3,
-    height: 2
+    height: 2,
+    url: 'https://www.instagram.com/p/CHEr_-VsYOp/',
   },
   {
     src: './assets/img/DSC01948.jpg',
     width: 3,
-    height: 2
+    height: 2,
+    url: 'https://www.instagram.com/p/CHfk7J1hons/'
   },
   {
     src: './assets/img/DSC01487.jpg',
     width: 3,
-    height: 2
+    height: 2,
+    url: 'https://www.instagram.com/p/CITYm4vjpiS/'
   },
   {
     src: './assets/img/IMG_6948.jpg',
@@ -130,7 +135,8 @@ export const gallery = [
   {
     src: './assets/img/DSC00091.jpg',
     width: 3,
-    height: 2
+    height: 2,
+    url: 'https://www.instagram.com/p/B3QdGMxH6jo/'
   },
 ];
 

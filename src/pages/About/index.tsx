@@ -111,6 +111,7 @@ function About({darkMode}: AboutProps) {
             <Image src="/assets/img/geysers.jpg" alt="Chris Weissenberger"/>
             <StyledAboutBioCopy>
               <P>Went to university to become a game developer, and I came out a web developer.</P>
+              <P light>This has given me a unique perspective on front end web development, one where I am constantly looking to push the boundaries of the web and look to new ways to add interactivity.</P>
               <P light>My curiosity and creativity have always shaped me, and pour into the rest of my life through photography, volunteerism, and travel.</P>
             </StyledAboutBioCopy>
           </StyledAboutBio>
@@ -120,7 +121,25 @@ function About({darkMode}: AboutProps) {
       <Section className='About-gallery' color='light'>
         <Container>
           <H3>I take photos sometimes 📸</H3>
-          <Gallery photos={gallery} />
+          <Gallery photos={gallery}
+            renderImage={({photo, index}) => {
+              const { url } = gallery[index];
+
+              return (
+                <>
+                  { url ? (
+                    <a href={url || ''} target="_blank" className="About-gallery--instagram">
+                      <img src={photo.src} width={photo.width} height={photo.height} />
+                    </a>
+                  ) : (
+                    <span>
+                      <img src={photo.src} width={photo.width} height={photo.height} />
+                    </span>
+                  )}
+                </>
+              )
+            }}
+          />
         </Container>
         <FlexContainer justifyCenter>
           <Anchor href="https://www.instagram.com/caweissen" target="_blank" rel="noopener noreferrer">

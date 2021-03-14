@@ -28,6 +28,46 @@ const StyledAbout = styled.div`
   .About-gallery {
     .react-photo-gallery--gallery {
       margin-bottom: 5em;
+
+      & > div {
+        justify-content: space-between;
+      }
+    }
+
+    &--instagram {
+      position: relative;
+
+      &:hover {
+        &::after,
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      &::after {
+        background-color: rgba(0, 0, 0, 0.5);
+        content: '';
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        transition: opacity 0.2s ease;
+        width: 100%;
+        z-index: 1;
+      }
+
+      &::before {
+        bottom: 10px;
+        color: white;
+        content: 'See on Instagram';
+        opacity: 0;
+        position: absolute;
+        right: 10px;
+        text-align: right;
+        transition: opacity 0.2s ease;
+        z-index: 2;
+      }
     }
   }
 `;

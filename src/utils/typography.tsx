@@ -80,7 +80,7 @@ const P = styled.p<CopyProps>`
   font-size: clamp(1.25em, 1.75vw, 1.5em);
   font-weight: ${({light}) => light ? 300 : 600};
   line-height: 1.75;
-  margin: 0 0 2em;
+  margin: 0 0 1em;
   transition: opacity 0.6s ease, transform 0.6s ease;
 
   a {
