@@ -6,6 +6,9 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
+  "engines" : {
+    "node" : "14.16.0"
+  },
   "dependencies": {
     "@react-three/drei": "^3.11.0",
     "@react-three/gltfjsx": "^3.1.4",
@@ -52,6 +55,6 @@
     "prettier": "^2.2.1",
     "snowpack": "^3.0.13",
     "snowpack-plugin-svgr": "^0.1.2",
-    "typescript": "^4.2.3"
+    "typescript": "^4.1.3"
   }
 }
