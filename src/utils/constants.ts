@@ -45,32 +45,6 @@ export const projectData = [
   },
 ]
 
-export const skills = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'TypeScript',
-  'Design Systems',
-  'React',
-  'Vue',
-  'Angular',
-  'React Native',
-  'three.js',
-  'PHP',
-  'Node.js',
-  'GraphQL',
-  'Augmented Reality',
-  'Virtual Reality',
-  'Game Development',
-  '3D Modeling',
-  'Photoshop',
-  'Illustrator',
-  'Photography',
-  'Videography',
-  'Photo/Video Editing',
-  'Spanish'
-]
-
 export const gallery = [
   {
     src: './assets/img/DSC00493.jpg',

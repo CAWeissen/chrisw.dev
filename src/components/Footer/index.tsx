@@ -28,7 +28,8 @@ function Footer({}:FooterProps) {
   return (
     <StyledFooter>
       <Section color={'darkGray'}>
-        <FlexContainer direction="column" alignEnd>
+        <FlexContainer direction="row" justifyEnd alignCenter>
+          <H6>Let's get in touch!</H6>
           <Button color={'white'} round onClick={copyEmail}>
             <span ref={footerButton}>{address}@{domain}</span>
           </Button>

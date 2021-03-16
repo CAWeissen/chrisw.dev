@@ -68,6 +68,33 @@ const HomeIntroText = styled.div`
   }
 `;
 
+const HomeLogoGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10ch, 1fr));
+  grid-gap: clamp(2em, 5vw, 4em);
+`;
+
+const HomeLogoGridItem = styled.div<{index:number}>`
+  align-items: center;
+  color: var(--textColor);
+  display: flex;
+  opacity: 0;
+  justify-content: center;
+  position: relative;
+  transition: color 0.3s ease, opacity 0.3s ease, transform 0.4s ease;
+  transition-delay: ${({index}) => index * 50}ms;
+  transform: translateY(32px);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  svg {
+    max-height: 100px;
+  }
+`;
+
 const HomeProjectGrid = styled.div`
   /* display: flex;
   flex-direction: column; */
@@ -130,7 +157,7 @@ const HomeProjectGridItem = styled.a<{index:number}>`
   text-decoration: none;
   transition: opacity 0.3s ease, transform 0.4s ease;
   transition-delay: ${({index}) => (index % 3) * 100}ms;
-  transform: translateY(100px);
+  transform: translateY(75px);
 
   /* CSS Grid */
   margin-bottom: 0;
@@ -240,4 +267,4 @@ const JobGroup = styled.div`
 `;
 
 
-export { StyledHome, HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemInfo, HomeProjectGridItemMedia, SkillsList, Skill, JobGroup };
+export { StyledHome, HomeIntro, HomeIntroText, HomeLogoGrid, HomeLogoGridItem, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemInfo, HomeProjectGridItemMedia, SkillsList, Skill, JobGroup };

@@ -1,17 +1,62 @@
 import React, { Suspense } from 'react';
 import { InView } from 'react-intersection-observer';
 
-import { HomeIntro, HomeIntroText, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemMedia, HomeProjectGridItemInfo, StyledHome, SkillsList, Skill, JobGroup} from './styles';
-import { projectData, skills } from '../../utils/constants';
-import { H1, H2, H5, H6, P } from '../../utils/typography';
+import { HomeIntro, HomeIntroText, HomeLogoGrid, HomeProjectGrid, HomeProjectGridItem, HomeProjectGridItemMedia, HomeProjectGridItemInfo, StyledHome, SkillsList, Skill, JobGroup, HomeLogoGridItem} from './styles';
+import { projectData } from '../../utils/constants';
+import { H1, H3, H4, H5, H6, P } from '../../utils/typography';
 import { Container, Section } from '../../components/Container';
 import Image from '../../components/Image';
 import Button from '../../components/Button';
 import { StyledLink } from '../../components/Link/styles';
+import Pepsi from '../../assets/logos/pepsi.svg'
+import BurgerKing from '../../assets/logos/burger-king.svg'
+import PizzaHut from '../../assets/logos/pizza-hut.svg'
+import Seagate from '../../assets/logos/seagate.svg'
+import Autobell from '../../assets/logos/autobell.svg'
+import Charlotte from '../../assets/logos/charlotte.svg'
 
 interface HomeProps {};
 
 function Home({}:HomeProps) {
+  const logoGridItems = [
+    Pepsi,
+    Seagate,
+    BurgerKing,
+    PizzaHut,
+    Charlotte,
+    Autobell,
+    // NascarHall,
+  ];
+
+  const skills = [
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'TypeScript',
+    'Design Systems',
+    'React',
+    'Vue',
+    'Angular',
+    'React Native',
+    'three.js',
+    'PHP',
+    'Node.js',
+    'GraphQL',
+    'Augmented Reality',
+    'Virtual Reality',
+    'Game Development',
+    '3D Modeling',
+    'Puns',
+    'Photoshop',
+    'Illustrator',
+    'Impressions',
+    'Photography',
+    'Videography',
+    'Photo/Video Editing',
+    'Spanish',
+    'Finding just the right GIF for the situation'
+  ];
+
   return (
     <StyledHome data-scroll-section>
       <Section>
@@ -32,11 +77,31 @@ function Home({}:HomeProps) {
           </InView>
         </Container>
       </Section>
+      <Section color="lightGray">
+        <Container thin>
+        <InView>
+            {({ inView, ref }) => (
+              <H3 ref={ref} className={inView ? 'reveal is-visible' : 'reveal'} style={{textAlign: 'center', marginBottom: '7.5vmin'}}>Brands I've Worked On</H3>
+            )}
+          </InView>
+          <HomeLogoGrid>
+            {logoGridItems.map((Logo, index) => (
+              <InView>
+                {({ inView, ref }) => (
+                  <HomeLogoGridItem className={inView ? 'is-visible' : 'will-reveal'} ref={ref} index={index}>
+                    <Logo />
+                  </HomeLogoGridItem>
+                )}
+              </InView>
+            ))}
+          </HomeLogoGrid>
+        </Container>
+      </Section>
       <Section color="aqua">
         <Container thin>
           <InView>
             {({ inView, ref }) => (
-              <H2 ref={ref} className={inView ? 'reveal is-visible' : 'reveal'} style={{textAlign: 'center', marginBottom: '2em'}}>Some of What I've Built:</H2>
+              <H4 ref={ref} className={inView ? 'reveal is-visible' : 'reveal'} style={{textAlign: 'center', marginBottom: '7.5vmin'}}>Some of What I've Built</H4>
             )}
           </InView>
           <HomeProjectGrid>

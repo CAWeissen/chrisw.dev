@@ -74,6 +74,7 @@ export const darkTheme = {
   green: darkGreen,
   tan: darkTan,
   salmon: darkSalmon,
+  lightGray: darkGray,
   dark: offWhite,
   light: black
 }
