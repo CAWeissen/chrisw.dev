@@ -1,25 +1,21 @@
-# New Project
+# Portfolio for Chris Weissenberger
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+This portfolio site utilizes a lot of technologies that I've wanted to try out but never got the chance to use while doing client work. I'll constantly be updating this as I explore new things!
+
+As for the stack, the site is bundled with Snowpack and built with:
+- React.js
+- Styled Components
+- A little bit of three.js (and react-three-fiber)
+- Dark mode support
 
 ## Available Scripts
+### yarn start
 
-### npm start
-
-Runs the app in the development mode.
+Runs the site in the development mode.
 Open http://localhost:8080 to view it in the browser.
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+The page will reload if you make edits and any lint errors will show up in the console.
 
-### npm run build
+### yarn build
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
-
-**For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" to your `snowpack.config.js` config file.
-
-### npm test
-
-Launches the application test runner.
-Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch mode.
+Builds a static copy of the site to the `build/` folder.
