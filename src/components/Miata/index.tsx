@@ -6,6 +6,7 @@ import { Loader, PerspectiveCamera, Plane, Shadow } from '@react-three/drei';
 import { bgDark, bgLight } from '../../utils/theme';
 import MiataModel from './miata';
 import type { DarkMode } from 'use-dark-mode';
+import type { GridHelper, SpotLight } from 'three';
 
 interface MiataProps {
   darkMode: DarkMode;
@@ -13,10 +14,10 @@ interface MiataProps {
 }
 
 function Miata({darkMode, anim}: MiataProps) {
-  const grid = React.useRef<THREE.GridHelper>();
-  const spotLight1 = React.useRef<THREE.SpotLight>();
-  const spotLight2 = React.useRef<THREE.SpotLight>();
-  const spotLight3 = React.useRef<THREE.SpotLight>();
+  const grid = React.useRef<GridHelper>();
+  const spotLight1 = React.useRef<SpotLight>();
+  const spotLight2 = React.useRef<SpotLight>();
+  const spotLight3 = React.useRef<SpotLight>();
   let bgColor:string = darkMode.value ? bgDark.toHexString() : bgLight.toHexString();
   let mounted:boolean = false;
 

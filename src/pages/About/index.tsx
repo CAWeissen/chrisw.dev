@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import type { GridHelper } from 'three';
 import {  OrbitControls, PerspectiveCamera, Plane, Shadow } from '@react-three/drei';
 import Gallery from 'react-photo-gallery';
 
@@ -15,8 +16,6 @@ import Button from '../../components/Button';
 import Image from '../../components/Image';
 //  @ts-ignore
 import ToggleLights from '../../assets/toggle-lights.svg';
-import type { GridHelper } from 'three';
-import type { SpotLight } from 'three';
 
 interface AboutProps {
   darkMode: any;
@@ -35,9 +34,6 @@ const toggleLights = () => {
 function About({darkMode}: AboutProps) {
   const [mounted, mountedSet] = React.useState(false);
   const grid = React.useRef<GridHelper>();
-  const spotLight1 = React.useRef<SpotLight>();
-  const spotLight2 = React.useRef<SpotLight>();
-  const spotLight3 = React.useRef<SpotLight>();
   let bgColor:string = darkMode.value ? bgDark.toHexString() : bgLight.toHexString();
 
   React.useEffect(() => {
@@ -124,11 +120,11 @@ function About({darkMode}: AboutProps) {
                 <>
                   { url ? (
                     <a href={url || ''} target="_blank" className="About-gallery--instagram">
-                      <img class="About-gallery-image" src={photo.src} width={photo.width} height={photo.height} />
+                      <img className="About-gallery-image" src={photo.src} width={photo.width} height={photo.height} />
                     </a>
                   ) : (
                     <span>
-                      <img class="About-gallery-image" src={photo.src} width={photo.width} height={photo.height} />
+                      <img className="About-gallery-image" src={photo.src} width={photo.width} height={photo.height} />
                     </span>
                   )}
                 </>

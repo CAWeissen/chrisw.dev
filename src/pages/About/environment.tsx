@@ -31,7 +31,7 @@ export default function EnvMap(props) {
                     <sphereGeometry args={[1, 64, 64]} />
                     <LayerMaterial side={BackSide}>
                         <Base color="#444" alpha={1} mode="normal" />
-                        <Depth colorA="#333" colorB={darkMode.value ? '#000' : '#fff'} alpha={0.5} mode="normal" near={0} far={300} origin={[100, 100, 100]} />
+                        <Depth colorA="#333" colorB={darkMode.value ? '#000' : '#fff'} alpha={0.5} mode="normal" near={0} far={300} />
                     </LayerMaterial>
                 </mesh>
             </Environment>
@@ -40,7 +40,7 @@ export default function EnvMap(props) {
 }
 
 function MovingLights() {
-    const group = useRef()
+    const group = useRef(null!)
     const positions = useRef([2, 0, 2, 0, 2, 0, 2, 0])
     useFrame((state, delta) => {
       if ((group.current.position.z += delta * 15) > 60) group.current.position.z = -60
