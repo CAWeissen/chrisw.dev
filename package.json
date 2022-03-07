@@ -7,7 +7,7 @@
     "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "engines": {
-    "node": ">=4.16.0"
+    "node": "16.14.0"
   },
   "dependencies": {
     "@react-three/drei": "^8.16.0",
