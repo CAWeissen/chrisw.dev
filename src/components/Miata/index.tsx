@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import type * as THREE from 'three';
-import { Canvas, useFrame } from 'react-three-fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Loader, PerspectiveCamera, Plane, Shadow } from '@react-three/drei';
 
 import { bgDark, bgLight } from '../../utils/theme';

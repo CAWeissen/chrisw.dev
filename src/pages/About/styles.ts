@@ -26,6 +26,10 @@ const StyledAbout = styled.div`
   }
 
   .About-gallery {
+    img {
+      border-radius: 10px;
+    }
+
     .react-photo-gallery--gallery {
       margin-bottom: 5em;
 
@@ -89,6 +93,11 @@ const StyledAboutBio = styled.div`
     margin-bottom: 2em;
     max-height: 500px;
     width: 100%;
+
+    img {
+      border-radius: 20px;
+      object-position: 75% 0%;
+    }
   }
 
   @media screen and (min-width: 769px) {

@@ -1,10 +1,10 @@
-import React from 'react';
-import type * as THREE from 'three';
-import { Canvas, useFrame } from 'react-three-fiber';
-import { OrbitControls, PerspectiveCamera, Plane, Shadow, useProgress } from '@react-three/drei';
+import React, { useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import {  OrbitControls, PerspectiveCamera, Plane, Shadow } from '@react-three/drei';
 import Gallery from 'react-photo-gallery';
 
 import { StyledAbout, StyledAboutBio, StyledAboutBioCopy, StyledAboutIntro, StyledThree } from './styles';
+import EnvMap from './environment';
 import { gallery } from '../../utils/constants';
 import { bgDark, bgLight } from '../../utils/theme';
 import { H1, H2, H3, H4, H5, H6, P } from '../../utils/typography';
@@ -15,6 +15,8 @@ import Button from '../../components/Button';
 import Image from '../../components/Image';
 //  @ts-ignore
 import ToggleLights from '../../assets/toggle-lights.svg';
+import type { GridHelper } from 'three';
+import type { SpotLight } from 'three';
 
 interface AboutProps {
   darkMode: any;
@@ -32,10 +34,10 @@ const toggleLights = () => {
 
 function About({darkMode}: AboutProps) {
   const [mounted, mountedSet] = React.useState(false);
-  const grid = React.useRef<THREE.GridHelper>();
-  const spotLight1 = React.useRef<THREE.SpotLight>();
-  const spotLight2 = React.useRef<THREE.SpotLight>();
-  const spotLight3 = React.useRef<THREE.SpotLight>();
+  const grid = React.useRef<GridHelper>();
+  const spotLight1 = React.useRef<SpotLight>();
+  const spotLight2 = React.useRef<SpotLight>();
+  const spotLight3 = React.useRef<SpotLight>();
   let bgColor:string = darkMode.value ? bgDark.toHexString() : bgLight.toHexString();
 
   React.useEffect(() => {
@@ -65,18 +67,11 @@ function About({darkMode}: AboutProps) {
       <StyledThree className={ready ? 'is-ready' : ''}>
         <Canvas style={{minHeight: 'calc(100vh - 100px)', position: 'absolute', left: 0, top: 0, width: '100vw', zIndex: 0}} onCreated={() => readySet(true)}>
           <React.Suspense fallback={null}>
-            <PerspectiveCamera makeDefault fov={45} position={[0, 0, 4]} rotation={[0, 0, 0]} />
+            <PerspectiveCamera makeDefault fov={45} position={[1, 0, 4]} rotation={[0, 0, 0]} />
             <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} position={[0, 0.5, 4]} />
-            <fog attach="fog" args={[bgColor, 5, 15]} />
+            <EnvMap darkMode={darkMode} />
 
             <MiataGroup position={[1, -0.5, 1]} rotation={[0, -Math.PI / 4, 0]}>
-              <ambientLight intensity={0.1} castShadow />
-              <directionalLight position={[0, -10, 0]} intensity={darkMode.value ? 0.5 : 1} color={darkMode.value ? '#FFFFFF' : 'white'} />
-              <directionalLight position={[5, 5, -10]} intensity={darkMode.value ? 1 : 1} color={darkMode.value ? '#b9e8ff' : 'white'} />
-              <spotLight ref={spotLight1} intensity={darkMode.value ? 0 : 1} position={[-3, 6, -10]} penumbra={1} castShadow />
-              <spotLight ref={spotLight2} intensity={darkMode.value ? 0 : 1} position={[-10, 10, 10]} penumbra={1} castShadow />
-              <spotLight ref={spotLight3} intensity={darkMode.value ? 0.1 : 0.5} color={darkMode.value ? '#DCF6F6' : 'white'} position={[10, 5, 0]} penumbra={1} castShadow />
-
               <gridHelper ref={grid} args={[100, 40, '#002B4B', '#002B4B']} position={[0, 0.01, 0]} />
 
               <Plane args={[100, 100]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
@@ -129,11 +124,11 @@ function About({darkMode}: AboutProps) {
                 <>
                   { url ? (
                     <a href={url || ''} target="_blank" className="About-gallery--instagram">
-                      <img src={photo.src} width={photo.width} height={photo.height} />
+                      <img class="About-gallery-image" src={photo.src} width={photo.width} height={photo.height} />
                     </a>
                   ) : (
                     <span>
-                      <img src={photo.src} width={photo.width} height={photo.height} />
+                      <img class="About-gallery-image" src={photo.src} width={photo.width} height={photo.height} />
                     </span>
                   )}
                 </>

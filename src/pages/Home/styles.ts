@@ -25,6 +25,7 @@ const HomeIntro = styled.div`
     &::after {
       background: ${({theme}) => theme.salmon};
       bottom: 0;
+      border-radius: 20px;
       content: '';
       height: 80%;
       left: 0;
@@ -106,6 +107,7 @@ const HomeProjectGrid = styled.div`
 `;
 
 const HomeProjectGridItemMedia = styled.div`
+  border-radius: 10px;
   position: relative;
   margin-right: 3em;
   max-width: 720px;
